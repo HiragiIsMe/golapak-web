@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
-    return view('auth-login');
+Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
+
+Route::get('/activate-success', function(){
+    return view('emails.activation-success');
 });
+

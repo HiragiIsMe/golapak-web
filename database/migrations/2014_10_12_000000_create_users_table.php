@@ -17,6 +17,8 @@ return new class extends Migration
             $table->string('email', 50)->unique();
             $table->string('password', 70);
             $table->string('phone_number', 13);
+            $table->string('activation_token', 60)->nullable();
+            $table->boolean('status')->default(0);
             $table->timestamps();
         });
     }
