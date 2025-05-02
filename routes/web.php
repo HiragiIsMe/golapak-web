@@ -36,10 +36,38 @@ Route::get('/kontak', function () {
     return view('page.kontak');
 })->name('kontak');
 
-Route::get('/dashboard', function () {
-    return view('dashboard.main');
-})->name('main');
 
+
+// Route dashboard
+Route::get('/dashboard-admin', function () {
+    return view('dashboard.main');
+})->name('dashboard');
+
+Route::get('/dashboard-admin/menu', function () {
+    return view('dashboard.menu');
+})->name('dashboard-menu');
+
+Route::get('/dashboard-admin/menu/create', function () {
+    return view('crud.menu-create');
+})->name('dashboard-menu-create');
+
+Route::get('/dashboard-admin/menu/edit', function () {
+    return view('crud.menu-edit');
+})->name('dashboard-menu-edit');
+
+Route::get('/dashboard-admin/stock-barang', function () {
+    return view('dashboard.stock');
+})->name('dashboard-stock');
+
+Route::get('/dashboard-admin/pegawai', function () {
+    return view('dashboard.pegawai');
+})->name('dashboard-pegawai');
+
+Route::get('/dashboard-admin/riwayat-transaksi', function () {
+    return view('dashboard.riwayat');
+})->name('dashboard-riwayat');
+
+// api
 Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
 
 Route::get('/activate-success', function(){
