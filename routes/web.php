@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Api\AuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
+
 
 // Route page
 Route::get('/', function () {
@@ -37,3 +39,11 @@ Route::get('/kontak', function () {
 Route::get('/dashboard', function () {
     return view('dashboard.main');
 })->name('main');
+
+Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
+
+Route::get('/activate-success', function(){
+    return view('emails.activation-success');
+});
+
+
