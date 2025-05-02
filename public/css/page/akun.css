@@ -1,0 +1,175 @@
+.login-page {
+    background: linear-gradient(135deg, #ff5e00, #ff9500);
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-container {
+    background: #fff;
+    border-radius: 25px;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.1);
+    display: flex;
+    overflow: hidden;
+    width: 900px;
+    max-width: 100%;
+}
+
+.login-image {
+    flex: 1;
+    background: #f9f9f9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+}
+
+.login-image img {
+    max-width: 100%;
+    height: auto;
+}
+
+.login-form {
+    flex: 1;
+    padding: 2rem 3rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.login-form h2 {
+    font-size: 2rem;
+    margin-bottom: 1.5rem;
+    color: #333;
+    text-align: center;
+}
+
+/* Role Buttons */
+.role-selector {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    margin-bottom: 2rem;
+}
+
+.role-btn {
+    background: none;
+    border: 2px solid #ff8c00;
+    padding: 0.5rem 1rem;
+    border-radius: 8px;
+    color: #ff8c00;
+    font-weight: bold;
+    cursor: pointer;
+    transition: all 0.3s;
+}
+
+.role-btn.active,
+.role-btn:hover {
+    background: #ff8c00;
+    color: #fff;
+}
+
+/* Form Fields */
+form input {
+    width: 100%; /* FIX di sini */
+    margin-bottom: 1rem;
+    padding: 0.75rem 1rem;
+    border: 1px solid #ccc;
+    background: #f9f9f9;
+    border-radius: 10px;
+    outline: none;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    transition: all 0.3s;
+    font-size: 1rem;
+    color: #333;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    box-sizing: border-box;
+}
+
+
+form input::placeholder {
+    color: #aaa;
+}
+
+form input:focus {
+    border: 1px solid #ff8c00;
+    background: #fff;
+    box-shadow: 0 4px 8px rgba(255, 140, 0, 0.2);
+}
+
+
+/* Submit Button */
+.btn-login {
+    background: #ff8c00;
+    border: none;
+    color: white;
+    width: 100%;
+    padding: 0.8rem;
+    border-radius: 10px;
+    font-size: 1rem;
+    font-weight: bold;
+    margin-top: 1rem;
+    cursor: pointer;
+    transition: background 0.3s;
+}
+
+.btn-login:hover {
+    background: #e67600;
+}
+
+.input-group {
+    position: relative;
+    margin-bottom: 1.5rem;
+}
+
+.input-group i {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    color: #aaa;
+    font-size: 1rem;
+}
+
+.input-group i.fas.fa-user,
+.input-group i.fas.fa-lock {
+    left: 15px;
+    top: 35%;
+}
+
+.input-group input {
+    width: 100%;
+    padding-left: 2.5rem;
+    padding-right: 2.5rem;
+    box-sizing: border-box;
+}
+
+.input-group i.toggle-password {
+    position: absolute;
+    top: 45%; /* turun sedikit biar presisi */
+    right: 15px;
+    width: 24px; /* area klik dibesarkan */
+    height: 24px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+    transform: translateY(-50%);
+    transition: all 0.3s ease;
+}
+
+
+
+.input-group i.toggle-password:hover {
+    transform: translateY(-50%) scale(1.2);
+    color: #ff8c00;
+}
+
+
+
+
+
+
+

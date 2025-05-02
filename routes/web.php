@@ -14,9 +14,36 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// Route page
+Route::get('/', function () {
+    return view('page.landing');
+})->name('landing');
+
+Route::get('/tentangkami', function () {
+    return view('page.tentangkami');
+})->name('tentangkami');
+
+Route::get('/menu', function () {
+    return view('page.menu');
+})->name('menu');
+
+Route::get('/akun', function () {
+    return view('page.akun');
+})->name('akun');
+
+Route::get('/kontak', function () {
+    return view('page.kontak');
+})->name('kontak');
+
+Route::get('/dashboard', function () {
+    return view('dashboard.main');
+})->name('main');
+
 Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
 
 Route::get('/activate-success', function(){
     return view('emails.activation-success');
 });
+
 

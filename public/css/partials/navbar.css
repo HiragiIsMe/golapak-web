@@ -1,0 +1,33 @@
+.navbar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    background: #F0F0F0;
+    padding: 10px 30px;
+    color: white;
+}
+
+.navbar-left .logo {
+    height: 40px;
+}
+
+.navbar-center a {
+    margin: 0 15px;
+    text-decoration: none;
+    color: rgb(0, 0, 0);
+    font-weight: bold;
+}
+.navbar-center a.active {
+    border-bottom: 2px solid #FF7622; /* kasih garis bawah oranye */
+    color: #FF7622; /* warna tulisan berubah */
+}
+
+
+.navbar-right .btn-order {
+    background: #FF7622;
+    color: #ffffff;
+    padding: 8px 16px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}

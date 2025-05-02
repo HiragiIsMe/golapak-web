@@ -1,0 +1,100 @@
+.tentangkami-page {
+    font-family: 'Poppins', sans-serif;
+}
+
+/* Hero Section */
+.hero-section {
+    height: 400px;
+    position: relative;
+}
+
+.hero-overlay {
+    background-color: rgba(0,0,0,0.5);
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.hero-title {
+    color: #fff;
+    font-size: 3rem;
+    font-weight: bold;
+}
+
+/* About Section */
+.about-section {
+    text-align: center;
+    padding: 3rem 2rem;
+    background: #fff;
+}
+
+.about-logo {
+    width: 120px;
+    margin-bottom: 1rem;
+}
+
+.about-desc {
+    font-size: 1.1rem;
+    color: #555;
+    max-width: 700px;
+    margin: 0 auto;
+}
+
+/* Visi Misi Section */
+.visimisi-section {
+    background: #ff8c00;
+    color: #fff;
+    padding: 3rem 2rem;
+    display: flex;
+    gap: 2rem;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.visimisi-card {
+    background: #fff;
+    color: #333;
+    padding: 2rem;
+    border-radius: 20px;
+    width: 300px;
+    box-shadow: 0 8px 16px rgba(0,0,0,0.1);
+    text-align: center;
+}
+
+.visimisi-card h2 {
+    color: #ff8c00;
+    margin-bottom: 1rem;
+}
+
+/* Lokasi Section */
+.lokasi-section {
+    background: #fff;
+    text-align: center;
+    padding: 3rem 2rem;
+}
+
+.lokasi-section h2 {
+    margin-bottom: 1rem;
+    font-size: 2rem;
+    color: #333;
+}
+
+.lokasi-section p {
+    margin-bottom: 2rem;
+    color: #666;
+}
+
+.btn-maps {
+    background-color: #ff8c00;
+    color: white;
+    padding: 0.8rem 2rem;
+    border-radius: 10px;
+    text-decoration: none;
+    font-weight: bold;
+    transition: background-color 0.3s;
+}
+
+.btn-maps:hover {
+    background-color: #e67600;
+}
