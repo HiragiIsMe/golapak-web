@@ -146,25 +146,38 @@ form input:focus {
     box-sizing: border-box;
 }
 
-.input-group i.toggle-password {
+
+.input-group .toggle-password {
     position: absolute;
-    top: 45%; /* turun sedikit biar presisi */
+    top: 50%;
     right: 15px;
-    width: 24px; /* area klik dibesarkan */
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    cursor: pointer;
     transform: translateY(-50%);
-    transition: all 0.3s ease;
+    cursor: pointer;
+    color: #aaa;
 }
 
-
-
-.input-group i.toggle-password:hover {
-    transform: translateY(-50%) scale(1.2);
+.input-group .toggle-password:hover {
     color: #ff8c00;
+}
+
+.pass_show {
+    position: relative;
+}
+
+.pass_show .ptxt {
+    position: absolute;
+    top: 50%;
+    right: 15px;
+    transform: translateY(-50%);
+    z-index: 10;
+    color: #ff8c00;
+    cursor: pointer;
+    font-weight: bold;
+    user-select: none;
+}
+
+.pass_show .ptxt:hover {
+    color: #333;
 }
 
 

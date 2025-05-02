@@ -26,8 +26,9 @@
 .navbar-right .btn-order {
     background: #FF7622;
     color: #ffffff;
-    padding: 8px 16px;
+    padding: 5px 16px;
     border: none;
-    border-radius: 5px;
+    border-radius: 15px;
     cursor: pointer;
+    text-decoration: none;
 }
