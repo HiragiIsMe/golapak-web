@@ -6,6 +6,7 @@
     <title>@yield('title', 'Dashboard - Mazer Admin Dashboard')</title>
 
     <link rel="preconnect" href="https://fonts.gstatic.com">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
@@ -36,37 +37,18 @@
                     <ul class="menu">
                         <li class="sidebar-title">Menu</li>
 
-                        <li class="sidebar-item {{ Request::is('dashboard-admin') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-admin') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('dashboard-checkout') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard-checkout') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/menu*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-menu') }}" class='sidebar-link'>
-                                <i class="fa-solid fa-utensils"></i>
-                                <span>Daftar Menu</span>
+                        <li class="sidebar-item {{ Request::is('dashboard-checkout/kasir*') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard-kasir') }}" class='sidebar-link'>
+                                <i class="fa-solid fa-bell-concierge"></i>
+                                <span>kasir</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/stock*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-stock') }}" class='sidebar-link'>
-                                <i class="fa-solid fa-boxes-stacked"></i>
-                                <span>Stock Barang</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/pegawai*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-pegawai') }}" class='sidebar-link'>
-                                <i class="fa-solid fa-user-group"></i>
-                                <span>Pegawai</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/riwayat*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-riwayat') }}" class='sidebar-link'>
-                                <i class="fa-solid fa-clock-rotate-left"></i>
-                                <span>Riwayat Transaksi</span>
-                            </a>
-                        </li>
-
                     </ul>
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
@@ -86,6 +68,67 @@
             @yield('content')
 
         </div>
+        <!-- Modal Detail Pesanan -->
+<div class="modal fade" id="modalDetailPesanan" tabindex="-1" aria-labelledby="modalLabelPesanan" aria-hidden="true">
+  <div class="modal-dialog modal-dialog-centered modal-lg">
+    <div class="modal-content border-orange p-4" style="border-radius: 20px; background-color: #efefef;">
+      <div class="modal-header border-0">
+        <h5 class="modal-title w-100 text-center fw-bold">Detail Pesanan (Offline)</h5>
+        <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
+      </div>
+      <div class="modal-body">
+
+        <!-- Jenis Pesanan -->
+        <div class="d-flex justify-content-center mb-3">
+          <button class="btn btn-outline-secondary me-2 active" id="btnDineIn">Dine In</button>
+          <button class="btn btn-warning text-white" id="btnTakeAway">Take Away</button>
+        </div>
+
+        <!-- Informasi Transaksi -->
+        <div class="mb-3">
+          <strong>Kode Transaksi:</strong> XB9380180283 <br>
+          <strong>Nama Pembeli:</strong> <input type="text" class="form-control mt-1" value="Budi">
+        </div>
+
+        <!-- Tabel Pesanan -->
+        <div class="table-responsive mb-4">
+          <table class="table text-center">
+            <thead>
+              <tr>
+                <th>Nama</th>
+                <th>Qty</th>
+                <th>Harga</th>
+              </tr>
+            </thead>
+            <tbody>
+              <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
+              <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
+              <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
+            </tbody>
+          </table>
+        </div>
+
+        <hr>
+
+        <!-- Ringkasan Harga -->
+        <div class="text-end">
+          <div>Sub Total: <strong>120.000</strong></div>
+          <div>Pajak: <strong>10.000</strong></div>
+          <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">140.000</span></div>
+        </div>
+
+        <!-- Tombol Aksi -->
+        <div class="mt-4 d-flex justify-content-between">
+          <button class="btn btn-secondary">Kembali</button>
+          <button class="btn btn-danger">Batalkan Pesanan</button>
+          <button class="btn btn-warning text-white">Cetak Struk</button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+</div>
+
     </div>
 
     <!-- JS -->

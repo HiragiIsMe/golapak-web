@@ -38,13 +38,13 @@ Route::get('/kontak', function () {
 
 
 
-// Route dashboard
+// Route dashboard admin
 Route::get('/dashboard-admin', function () {
-    return view('dashboard.main');
-})->name('dashboard');
+    return view('dashboard-admin.main');
+})->name('dashboard-admin');
 
 Route::get('/dashboard-admin/menu', function () {
-    return view('dashboard.menu');
+    return view('dashboard-admin.menu');
 })->name('dashboard-menu');
 
 Route::get('/dashboard-admin/menu/create', function () {
@@ -56,16 +56,27 @@ Route::get('/dashboard-admin/menu/edit', function () {
 })->name('dashboard-menu-edit');
 
 Route::get('/dashboard-admin/stock-barang', function () {
-    return view('dashboard.stock');
+    return view('dashboard-admin.stock');
 })->name('dashboard-stock');
 
 Route::get('/dashboard-admin/pegawai', function () {
-    return view('dashboard.pegawai');
+    return view('dashboard-admin.pegawai');
 })->name('dashboard-pegawai');
 
 Route::get('/dashboard-admin/riwayat-transaksi', function () {
-    return view('dashboard.riwayat');
+    return view('dashboard-admin.riwayat');
 })->name('dashboard-riwayat');
+
+
+// dashboard kasir
+Route::get('/dashboard-checkout', function () {
+    return view('dashboard-checkout.main');
+})->name('dashboard-checkout');
+
+Route::get('/dashboard-checkout/kasir', function () {
+    return view('dashboard-checkout.kasir');
+})->name('dashboard-kasir');
+
 
 // api
 Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
