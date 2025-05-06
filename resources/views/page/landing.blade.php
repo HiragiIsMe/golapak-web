@@ -80,7 +80,7 @@
     </section>
 
         <!-- Floating Order Button -->
-    <a href="{{ route('menu') }}" class="floating-order-btn" title="Pesan Sekarang">
+    <a href="#" class="floating-order-btn" title="Pesan Sekarang">
         <img src="{{ asset('img/landing/bakso-fl.png') }}" alt="Order Button">
     </a>
 
