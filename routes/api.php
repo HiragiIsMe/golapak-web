@@ -22,3 +22,5 @@ Route::post('/send-reset-password', [AuthController::class, 'SendResetPassword']
 Route::post('/verify-reset-password', [AuthController::class, 'VerifyResetPassword']);
 
 Route::post('/login', [AuthController::class, 'Login']);
+
+Route::post('/logout', [AuthController::class, 'logout']);

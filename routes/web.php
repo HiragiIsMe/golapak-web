@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Web\AuthController as WebAuthController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -36,7 +37,7 @@ Route::get('/kontak', function () {
     return view('page.kontak');
 })->name('kontak');
 
-
+Route::post('/login', [WebAuthController::class, 'authenticate'])->name('login');
 
 // Route dashboard admin
 Route::get('/dashboard-admin', function () {

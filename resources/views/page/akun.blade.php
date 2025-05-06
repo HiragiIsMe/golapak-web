@@ -12,13 +12,13 @@
         <div class="login-form">
             <h2>Selamat Datang<br>di Login Admin</h2>
 
-            <form method="POST" action="{{ route('akun') }}">
+            <form method="POST" action="{{ route('login') }}">
                 @csrf
                 <input type="hidden" name="role" value="master">
 
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="username" placeholder="Masukkan Username Anda" required>
+                    <input type="text" name="email" placeholder="Masukkan Email Anda" required>
                 </div>
 
                 <div class="input-group pass_show">
