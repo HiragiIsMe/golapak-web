@@ -16,15 +16,18 @@
     @stack('styles') 
 </head>
 <body>
+    @include('partials.navbar')
 
-    @include('partials.navbar') {{-- Memanggil navbar --}}
-    
-    @yield('content') {{-- Konten halaman yang berubah-ubah --}}
+    <div id="content">
+        @yield('content')
+    </div>
 
-    @include('partials.footer') {{-- Memanggil footer --}}
+    @include('partials.footer')
 
     <script src="{{ asset('js/slider.js') }}"></script>
     <script src="{{ asset('js/menu.js') }}"></script>
+    <script src="{{ asset('js/navloader.js') }}"></script> 
     @stack('scripts')
 </body>
+
 </html>

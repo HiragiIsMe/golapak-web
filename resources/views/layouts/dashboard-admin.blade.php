@@ -9,6 +9,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logut/logout.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
@@ -71,6 +72,11 @@
                 </div>
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 
+                <div class="logout-section">
+                    <button class="btn-logout">
+                      <i class="fa-solid fa-right-from-bracket"></i> Logout
+                    </button>
+                </div>
             </div>
         </div>
         

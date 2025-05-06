@@ -32,3 +32,10 @@
     cursor: pointer;
     text-decoration: none;
 }
+
+.nav-link.active {
+    color: #ff6600;
+    font-weight: 600;
+    border-bottom: 2px solid #ff6600;
+}
+
