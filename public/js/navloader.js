@@ -1,6 +1,18 @@
+function setActiveNav() {
+    const links = document.querySelectorAll('.nav-link');
+    links.forEach(link => {
+        if (link.href === location.href || link.getAttribute('href') === location.pathname) {
+            link.classList.add('active');
+        } else {
+            link.classList.remove('active');
+        }
+    });
+}
+
 function initPage() {
     if (typeof initSlider === 'function') initSlider();
     if (typeof initMenuPage === 'function') initMenuPage();
+    setActiveNav();
 }
 
 document.addEventListener('DOMContentLoaded', () => {
