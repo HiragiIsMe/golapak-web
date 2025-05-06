@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
     <link rel="stylesheet" href="{{ asset('assets/css/bootstrap.css') }}">
+    <link rel="stylesheet" href="{{ asset('css/logut/logout.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/iconly/bold.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/perfect-scrollbar/perfect-scrollbar.css') }}">
     <link rel="stylesheet" href="{{ asset('assets/vendors/bootstrap-icons/bootstrap-icons.css') }}">
@@ -22,39 +23,50 @@
     <div id="app">
         <!-- Sidebar dan Navbar -->
         <div id="sidebar" class="active">
-            <div class="sidebar-wrapper active">
-                <div class="sidebar-header">
-                    <div class="d-flex justify-content-between">
-                        <div class="logo">  
-                            <a href="index.html"><img src="{{ asset('img/roby.jpg') }}" alt="Logo" srcset=""> Toko fadil</a>   
-                        </div>
-                        <div class="toggler">
-                            <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
-                        </div>
-                    </div>
-                </div>
-                <div class="sidebar-menu">
-                    <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-
-                        <li class="sidebar-item {{ Request::is('dashboard-checkout') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-checkout') }}" class='sidebar-link'>
-                                <i class="bi bi-grid-fill"></i>
-                                <span>Dashboard</span>
-                            </a>
-                        </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-checkout/kasir*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-kasir') }}" class='sidebar-link'>
-                                <i class="fa-solid fa-bell-concierge"></i>
-                                <span>kasir</span>
-                            </a>
-                        </li>
-                    </ul>
-                </div>
-                <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
-
-            </div>
-        </div>
+          <div class="sidebar-wrapper active">
+              <div class="sidebar-header">
+                  <div class="d-flex justify-content-between">
+                      <div class="logo">
+                          <a href="#"><img src="{{ asset('img/roby.jpg') }}" alt="Logo"> Toko Fadil</a>
+                      </div>
+                      <div class="toggler">
+                          <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
+                      </div>
+                  </div>
+              </div>
+      
+              <div class="sidebar-content">
+                  <div class="sidebar-menu">
+                      <ul class="menu">
+                          <li class="sidebar-title">Menu</li>
+                          <li class="sidebar-item {{ Request::is('dashboard-checkout') ? 'active' : '' }}">
+                              <a href="{{ route('dashboard-checkout') }}" class='sidebar-link'>
+                                  <i class="bi bi-grid-fill"></i>
+                                  <span>Dashboard</span>
+                              </a>
+                          </li>
+      
+                          <li class="sidebar-item {{ Request::is('dashboard-checkout/kasir*') ? 'active' : '' }}">
+                              <a href="{{ route('dashboard-kasir') }}" class='sidebar-link'>
+                                  <i class="fa-solid fa-bell-concierge"></i>
+                                  <span>Kasir</span>
+                              </a>
+                          </li>
+                      </ul>
+                  </div>
+              </div>
+      
+              <div class="logout-section">
+                  <button class="btn-logout">
+                    <i class="fa-solid fa-right-from-bracket"></i> Logout
+                  </button>
+              </div>
+      
+              <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
+          </div>
+      </div>
+      
+      
         
         <div id="main">
             <header class="mb-3">

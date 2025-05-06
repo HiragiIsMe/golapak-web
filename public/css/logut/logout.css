@@ -1,0 +1,33 @@
+#sidebar .sidebar-wrapper {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100vh;
+}
+
+.sidebar-content {
+    flex-grow: 1;
+    overflow-y: auto;
+}
+
+.logout-section {
+    padding: 1rem;
+    border-top: 1px solid #ccc;
+    background-color: #f8f9fa;
+}
+
+.btn-logout {
+    width: 100%;
+    padding: 10px;
+    background-color: #dc3545;
+    border: none;
+    color: white;
+    font-weight: bold;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: background-color 0.2s;
+}
+
+.btn-logout:hover {
+    background-color: #c82333;
+}

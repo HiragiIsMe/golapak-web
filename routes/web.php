@@ -79,6 +79,7 @@ Route::get('/dashboard-checkout/kasir', function () {
 })->name('dashboard-kasir');
 
 
+
 // api
 Route::get('/activate-account/{token}', [AuthController::class, 'Activation'])->name('activate.account');
 
