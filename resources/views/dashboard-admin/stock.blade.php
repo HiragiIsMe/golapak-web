@@ -7,9 +7,9 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Stock Barang</h4>
         <!-- Button trigger modal -->
-        <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateBarang">
+        {{-- <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreateBarang">
             + Tambah Barang
-        </button>
+        </button> --}}
     </div>
 
     <!-- Table dummy -->
@@ -18,37 +18,33 @@
             <thead class="bg-dark text-white">
                 <tr>
                     <th>No</th>
-                    <th>Kode Barang</th>
                     <th>Nama</th>
                     <th>Harga</th>
                     <th>Stok</th>
-                    <th>Action</th>
                 </tr>
             </thead>
             <tbody>
-                @for ($i = 1; $i <= 10; $i++)
-                <tr>
-                    <td>{{ $i }}</td>
-                    <td>Lorem Ipsum</td>
-                    <td>Lorem Ipsum</td>
-                    <td>10.000</td>
-                    <td>10</td>
-                    <td>
-                        <!-- Button edit -->
-                        <button class="btn btn-info btn-sm" data-bs-toggle="modal" data-bs-target="#modalEditBarang">
-                            ✏️ Edit
-                        </button>
-                        <button class="btn btn-danger btn-sm">🗑️ Hapus</button>
-                    </td>
-                </tr>
-                @endfor
+                @foreach ($datas as $data)
+                    <tr>
+                        <td>{{ $no++ }}</td>
+                        <td>{{ $data['name'] }}</td>
+                        <td>{{ $data['main_cost'] }}</td>
+                        <td>
+                            @if ($data['stock'] == true)
+                                <a href="/update-tersedia/{{ $data['id'] }}" class="btn btn-success btn-sm"> Tersedia</a>
+                            @else
+                                <a href="/update-tidak-tersedia/{{ $data['id    '] }}" class="btn btn-danger btn-sm"> Tidak Tersedia</a>
+                            @endif
+                        </td>
+                    </tr>
+                @endforeach 
             </tbody>
         </table>
     </div>
 </div>
 
 <!-- Modal Create -->
-<div class="modal fade" id="modalCreateBarang" tabindex="-1" aria-labelledby="modalCreateBarangLabel" aria-hidden="true">
+{{-- <div class="modal fade" id="modalCreateBarang" tabindex="-1" aria-labelledby="modalCreateBarangLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
         <div class="modal-content border-orange">
             <div class="modal-body bg-light-grey p-4 rounded">
@@ -103,7 +99,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> --}}
 
 <style>
     .text-orange {

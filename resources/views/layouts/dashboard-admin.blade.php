@@ -49,8 +49,8 @@
                                 <span>Daftar Menu</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/stock*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-stock') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('stock*') ? 'active' : '' }}">
+                            <a href="/stock" class='sidebar-link'>
                                 <i class="fa-solid fa-boxes-stacked"></i>
                                 <span>Stock Barang</span>
                             </a>
