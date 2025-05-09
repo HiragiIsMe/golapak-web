@@ -43,8 +43,8 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/menu*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-menu') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('menu*') ? 'active' : '' }}">
+                            <a href="/menu" class='sidebar-link'>
                                 <i class="fa-solid fa-utensils"></i>
                                 <span>Daftar Menu</span>
                             </a>
@@ -73,9 +73,12 @@
                 <button class="sidebar-toggler btn x"><i data-feather="x"></i></button>
 
                 <div class="logout-section">
-                    <button class="btn-logout">
-                      <i class="fa-solid fa-right-from-bracket"></i> Logout
-                    </button>
+                    <form action="{{ url('logout') }}" method="POST">
+                        @csrf
+                    <button class="btn-logout" type="submit">
+                        <i class="fa-solid fa-right-from-bracket"></i> Logout
+                      </button>
+                    </form>
                 </div>
             </div>
         </div>

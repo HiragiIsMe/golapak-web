@@ -5,7 +5,7 @@
     <div class="navbar-center">
         <a href="{{ route('landing') }}" class="nav-link">Beranda</a>
         <a href="{{ route('tentangkami') }}" class="nav-link">Tentang Kami</a>
-        <a href="{{ route('menu') }}" class="nav-link">Menu</a>
+        <a href="{{ route('menuu') }}" class="nav-link">Menu</a>
         <a href="{{ route('kontak') }}" class="nav-link">Kontak</a>
     </div>
     <div class="navbar-right">

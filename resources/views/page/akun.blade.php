@@ -21,21 +21,42 @@
                     <input type="text" name="email" placeholder="Masukkan Email Anda" required>
                 </div>
 
+                @error('email')
+                    <div class="text-danger" style="color: red;">{{ $message }}</div>
+                @enderror
+
                 <div class="input-group pass_show">
                     <i class="fas fa-lock"></i>
                     <input type="password" name="password" placeholder="Masukkan Password Anda" required>
                     <span class="ptxt">Show</span>
                 </div>
 
+                @error('password')
+                    <div class="text-danger" style="color: red;">{{ $message }}</div>
+                @enderror   
+
                 <button type="submit" class="btn-login">Log In</button>
+
             </form>
         </div>
     </div>
 </section>
 @endsection
 
-@section('scripts')
+@push('scripts')
 <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+@if (session('login_error'))
+<script>
+    Swal.fire({
+        icon: 'error',
+        title: 'Login Gagal',
+        text: '{{ session('login_error') }}',
+    });
+</script>
+@endif
+
 <script>
     $(document).ready(function(){
         $('.pass_show .ptxt').on('click', function(){
@@ -47,4 +68,4 @@
         });
     });
 </script>
-@endsection
+@endpush

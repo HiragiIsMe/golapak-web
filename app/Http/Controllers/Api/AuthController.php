@@ -125,7 +125,7 @@ class AuthController extends Controller
             ], 401);
         }
 
-        if($user->status == 'unactive') {
+        if($user->status == false) {
             return response()->json([
                 'status' => 'error',
                 'message' => 'Akun Anda Belum Teraktivasi, Silahkan Cek Email Anda Untuk Proses Aktivasi'
@@ -153,4 +153,6 @@ class AuthController extends Controller
             "message" => "Logout Success"
         ], 200);
     }
+
+    
 }

@@ -13,15 +13,14 @@ return new class extends Migration
     {
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
-            $table->string('trabsaction_code', 10)->unique();
+            $table->string('transaction_code', 10)->unique();
             $table->unsignedBigInteger('user_id');
             $table->integer('total_qty');
             $table->integer('total_main_cost');
-            $table->integer('total_selling_cost');
             $table->integer('delivery_fee');
             $table->integer('grand_total');
             $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done']);
-            $table->enum('order_type', ['on_spot', 'deliver']);
+            $table->enum('order_type', ['dine_in', 'take_Away', 'deliver']);
             $table->dateTime('date');
             $table->timestamps();
 

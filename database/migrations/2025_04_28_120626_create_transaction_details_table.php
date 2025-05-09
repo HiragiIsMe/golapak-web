@@ -16,10 +16,8 @@ return new class extends Migration
             $table->unsignedBigInteger('transaction_id');
             $table->unsignedBigInteger('menu_id');
             $table->integer('main_cost');
-            $table->integer('selling_cost');
             $table->integer('qty');
             $table->integer('main_subtotal');
-            $table->integer('sales_subtotal');
             $table->timestamps();
 
             $table->foreign('transaction_id')->references('id')->on('transactions')->onUpdate('cascade')->onDelete('cascade');

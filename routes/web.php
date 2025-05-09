@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Web\AuthController as WebAuthController;
+use App\Http\Controllers\Web\MenuController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -25,9 +26,9 @@ Route::get('/tentangkami', function () {
     return view('page.tentangkami');
 })->name('tentangkami');
 
-Route::get('/menu', function () {
+Route::get('/menuu', function () {
     return view('page.menu');
-})->name('menu');
+})->name('menuu');
 
 Route::get('/akun', function () {
     return view('page.akun');
@@ -39,22 +40,15 @@ Route::get('/kontak', function () {
 
 Route::post('/login', [WebAuthController::class, 'authenticate'])->name('login');
 
+Route::post('/logout', [WebAuthController::class, 'logout'])->name('auth.logout');
+
+Route::resource('/menu', MenuController::class);
+
 // Route dashboard admin
 Route::get('/dashboard-admin', function () {
     return view('dashboard-admin.main');
 })->name('dashboard-admin');
 
-Route::get('/dashboard-admin/menu', function () {
-    return view('dashboard-admin.menu');
-})->name('dashboard-menu');
-
-Route::get('/dashboard-admin/menu/create', function () {
-    return view('crud.menu-create');
-})->name('dashboard-menu-create');
-
-Route::get('/dashboard-admin/menu/edit', function () {
-    return view('crud.menu-edit');
-})->name('dashboard-menu-edit');
 
 Route::get('/dashboard-admin/stock-barang', function () {
     return view('dashboard-admin.stock');

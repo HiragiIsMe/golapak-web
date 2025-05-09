@@ -15,8 +15,8 @@ return new class extends Migration
             $table->id();
             $table->string('name', 50);
             $table->string('image');
-            $table->integer('selling_cost');
             $table->integer('main_cost');
+            $table->enum('tipe', ['makanan', 'minuman']);
             $table->boolean('stock');
             $table->timestamps();
         });

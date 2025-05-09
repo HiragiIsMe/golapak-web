@@ -15,7 +15,10 @@ return new class extends Migration
         Schema::create('addresses', function (Blueprint $table) {
             $table->id();
             $table->unsignedBigInteger('user_id');
+            $table->string('name', 50);
+            $table->string('phone_number', 20);
             $table->text('address');
+            $table->boolean('main_address')->default(0);
             $table->timestamps();
 
             $table->foreign('user_id')->references('id')->on('users')->onUpdate('cascade')->onDelete('cascade');
