@@ -33,7 +33,7 @@
                             @if ($data['stock'] == true)
                                 <a href="/update-tersedia/{{ $data['id'] }}" class="btn btn-success btn-sm"> Tersedia</a>
                             @else
-                                <a href="/update-tidak-tersedia/{{ $data['id    '] }}" class="btn btn-danger btn-sm"> Tidak Tersedia</a>
+                                <a href="/update-tidak-tersedia/{{ $data['id'] }}" class="btn btn-danger btn-sm"> Tidak Tersedia</a>
                             @endif
                         </td>
                     </tr>

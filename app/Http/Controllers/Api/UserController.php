@@ -78,4 +78,14 @@ class UserController extends Controller
             'data' => $data
         ]);
     }
+
+    public function deleteAddress($address_id)
+    {
+        Address::where('id', '=', $address_id)->delete();
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Alamat Berhasil Dihaous'
+        ], 200);
+    }
 }

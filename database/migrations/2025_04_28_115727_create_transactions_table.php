@@ -19,7 +19,7 @@ return new class extends Migration
             $table->integer('total_main_cost');
             $table->integer('delivery_fee');
             $table->integer('grand_total');
-            $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done']);
+            $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done', 'canceled']);
             $table->enum('order_type', ['dine_in', 'take_Away', 'deliver']);
             $table->dateTime('date');
             $table->timestamps();

@@ -17,8 +17,8 @@ return new class extends Migration
             $table->unsignedBigInteger('courier_id');
             $table->unsignedBigInteger('adress_id');
             $table->text('notes');
-            $table->dateTime('delivery_date');
-            $table->dateTime('arrival_date');
+            $table->dateTime('delivery_date')->nullable();
+            $table->dateTime('arrival_date')->nullable();
             $table->enum('status', ['pending', 'process', 'arrived']);
             $table->timestamps();
 

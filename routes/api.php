@@ -2,9 +2,8 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Api\ProductController;
+use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,6 +31,8 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
 
     Route::post('/add-address', [UserController::class, 'addAdress']);
 
+    Route::post('/delete-address/{address_id}', [UserController::class, 'deleteAdress']);
+
     Route::put('/update-address', [UserController::class, 'updateAddress']);
 
     Route::get('/get-address/{user_id}', [UserController::class, 'getAddress']);
@@ -39,6 +40,20 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/menu/makanan', [ProductController::class, 'getMenuMakanan']);
 
     Route::get('/menu/minuman', [ProductController::class, 'getMenuMinuman']);
+
+    Route::post('/transaction-calculate', [TransactionController::class, 'Calculate']);
+
+    Route::post('/transaction-create', [TransactionController::class, 'createOrder']);
+
+    Route::get('/transaction-progress', [TransactionController::class, 'transactionProgress']);
+
+    Route::get('/transaction/{id}', [TransactionController::class, 'transactionDetail']);
+
+    Route::post('/transaction-cancel', [TransactionController::class, 'cancelTransaction']);
+
+    Route::get('/transaction-shipping', [TransactionController::class, 'transactionShipping']);
+
+    Route::get('/transaction-history', [TransactionController::class, 'transactionHistory']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
 });
