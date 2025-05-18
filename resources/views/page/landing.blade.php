@@ -25,16 +25,16 @@
         <div class="carousel-track-container">
             <ul class="carousel-track">
                 <li class="carousel-slide current-slide">
-                    <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 1">
+                    <img src="{{ asset('img/landing/Homepage_1.png') }}" alt="Slider 1">
                 </li>
                 <li class="carousel-slide">
-                    <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 2">
+                    <img src="{{ asset('img/landing/Homepage_2.png') }}" alt="Slider 2">
                 </li>
                 <li class="carousel-slide">
-                    <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 3">
+                    <img src="{{ asset('img/landing/Homepage_3.png') }}" alt="Slider 3">
                 </li>
                 <li class="carousel-slide">
-                    <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 4">
+                    <img src="{{ asset('img/landing/Homepage_4.png') }}" alt="Slider 4">
                 </li>
                 <li class="carousel-slide">
                     <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 5">

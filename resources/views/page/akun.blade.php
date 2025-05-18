@@ -18,11 +18,10 @@
 
                 <div class="input-group">
                     <i class="fas fa-user"></i>
-                    <input type="text" name="email" placeholder="Masukkan Email Anda" required>
+                    <input type="text" name="email" placeholder="Masukkan Email Anda" value="{{ old('email') }}" required>
                 </div>
-
                 @error('email')
-                    <div class="text-danger" style="color: red;">{{ $message }}</div>
+                    <div class="input-error">{{ $message }}</div>
                 @enderror
 
                 <div class="input-group pass_show">
@@ -30,10 +29,9 @@
                     <input type="password" name="password" placeholder="Masukkan Password Anda" required>
                     <span class="ptxt">Show</span>
                 </div>
-
                 @error('password')
-                    <div class="text-danger" style="color: red;">{{ $message }}</div>
-                @enderror   
+                    <div class="input-error">{{ $message }}</div>
+                @enderror
 
                 <button type="submit" class="btn-login">Log In</button>
 
