@@ -9,7 +9,7 @@ class ProductController extends Controller
 {
     public function getMenuMakanan()
     {
-        $data = Menu::select('name', 'image', 'main_cost')
+        $data = Menu::select('id', 'name', 'image', 'main_cost')
                 ->where('tipe', '=', 'makanan')
                 ->where('stock', '=', 1)->get();
 
@@ -21,7 +21,7 @@ class ProductController extends Controller
 
     public function getMenuMinuman()
     {
-        $data = Menu::select('name', 'image', 'main_cost')
+        $data = Menu::select('id', 'name', 'image', 'main_cost')
                 ->where('tipe', '=', 'minuman')
                 ->where('stock', '=', 1)->get();
 

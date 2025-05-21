@@ -21,6 +21,8 @@ return new class extends Migration
             $table->integer('grand_total');
             $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done', 'canceled']);
             $table->enum('order_type', ['dine_in', 'take_Away', 'deliver']);
+            $table->enum('payment_method', ['cod', 'transfer']);
+            $table->string('account_number')->default(null);
             $table->dateTime('date');
             $table->timestamps();
 

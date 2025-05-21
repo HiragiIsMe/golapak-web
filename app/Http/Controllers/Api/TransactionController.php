@@ -84,6 +84,7 @@ class TransactionController extends Controller
             'menu.*.id' => 'required|exists:menus,id',
             'menu.*.qty' => 'required|integer|min:1',
             'address_id' => 'required|exists:addresses,id',
+            'payment_method' => 'required'
         ]);
 
         DB::beginTransaction();
@@ -124,17 +125,34 @@ class TransactionController extends Controller
 
             $grandTotal = $totalMainCost + $shipping->cost;
 
-            $transaction = Transaction::create([
-                'transaction_code' => 'TR' . strtoupper(Str::random(8)),
-                'user_id' => $user->id,
-                'total_qty' => $totalQty,
-                'total_main_cost' => $totalMainCost,
-                'delivery_fee' => $shipping->cost,
-                'grand_total' => $grandTotal,
-                'status' => 'pending',
-                'order_type' => 'deliver',
-                'date' => now(),
-            ]);
+            if($request->payment_method == 'cod') {
+                $transaction = Transaction::create([
+                    'transaction_code' => 'TR' . strtoupper(Str::random(8)),
+                    'user_id' => $user->id,
+                    'total_qty' => $totalQty,
+                    'total_main_cost' => $totalMainCost,
+                    'delivery_fee' => $shipping->cost,
+                    'grand_total' => $grandTotal,
+                    'status' => 'pending',
+                    'order_type' => 'deliver',
+                    'payment_method' => $request->payment_method,
+                    'date' => now(),
+                ]);
+            }else{
+                $transaction = Transaction::create([
+                    'transaction_code' => 'TR' . strtoupper(Str::random(8)),
+                    'user_id' => $user->id,
+                    'total_qty' => $totalQty,
+                    'total_main_cost' => $totalMainCost,
+                    'delivery_fee' => $shipping->cost,
+                    'grand_total' => $grandTotal,
+                    'status' => 'pending',
+                    'order_type' => 'deliver',
+                    'payment_method' => $request->payment_method,
+                    'account_number' => $request->account_number,
+                    'date' => now(),
+                ]);
+            }
 
             foreach ($details as $detail) {
                 TransactionDetail::create([
