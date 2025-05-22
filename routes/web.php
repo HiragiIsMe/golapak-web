@@ -72,13 +72,17 @@ Route::get('/dashboard-admin/riwayat-transaksi', function () {
 
 
 // dashboard kasir
-Route::get('/dashboard-checkout', function () {
+Route::get('/dashboard-admin/pesanan', function () {
     return view('dashboard-checkout.main');
-})->name('dashboard-checkout');
+})->name('dashboard-pesanan');
 
-Route::get('/dashboard-checkout/kasir', function () {
+Route::get('/dashboard-admin/kasir', function () {
     return view('dashboard-checkout.kasir');
 })->name('dashboard-kasir');
+
+// Route::get('/dashboard-admin/pesanan', [PesananController::class, 'index'])->name('dashboard-pesanan');
+// Route::get('/dashboard-admin/kasir', [kasirController::class, 'index'])->name('dashboard-kasir');
+
 
 
 

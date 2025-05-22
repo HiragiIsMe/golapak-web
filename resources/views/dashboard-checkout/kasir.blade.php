@@ -1,4 +1,4 @@
-@extends('layouts.dashboard-checkout')
+@extends('layouts.dashboard-admin')
 
 @section('title', 'Dashboard Kasir')
 
