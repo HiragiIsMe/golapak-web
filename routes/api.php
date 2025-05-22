@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Api\AuthController;
+use App\Http\Controllers\Api\CourierController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
@@ -25,7 +26,9 @@ Route::post('/verify-reset-password', [AuthController::class, 'VerifyResetPasswo
     
 Route::post('/login', [AuthController::class, 'Login']);
 
-Route::group(['middleware' => 'auth:sanctum'], function(){
+Route::post('/login-kurir', [AuthController::class, 'LoginKurir']);
+
+Route::group(['middleware' => ['auth:sanctum', 'auth.user']], function(){
 
     Route::get('/user', [UserController::class, 'getUser']);
 
@@ -56,4 +59,17 @@ Route::group(['middleware' => 'auth:sanctum'], function(){
     Route::get('/transaction-history', [TransactionController::class, 'transactionHistory']);
 
     Route::post('/logout', [AuthController::class, 'logout']);
+});
+
+Route::group(['middleware' => ['auth:sanctum', 'auth.courier']], function(){
+    
+    Route::get('/shipping-pending', [CourierController::class, 'pendingShipment']);
+
+    Route::get('/shipping/{id}', [CourierController::class, 'shippiingDetail']);
+
+    Route::patch('/shipping-accept', [CourierController::class, 'shippingAccept']);
+
+    Route::get('/shipping-process', [CourierController::class, 'processShipment']);
+
+    Route::patch('/shipping-done', [CourierController::class, 'shippingDone']);
 });

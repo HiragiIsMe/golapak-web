@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use App\Models\Address;
 use Illuminate\Http\Request;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
@@ -13,6 +14,7 @@ use App\Models\Courier;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Str;
+use App\Utils\CalculateDistance;
 
 class TransactionController extends Controller
 {
@@ -119,8 +121,19 @@ class TransactionController extends Controller
                 $totalMainCost += $subtotal;
             }
 
-            $shipping = ShippingCost::where('lower_limit', '<=', $totalQty)
-                ->where('upper_limit', '>=', $totalQty)
+            $address = Address::findOrFail($request->address_id);
+
+            $mainlat = env('MAIN_LATITUDE');
+            $mainlong = env('MAIN_LONGITUDE');
+
+            $destinationLat = $address->latitude;
+            $destinationLon = $address->longitude;
+
+
+            $distance = CalculateDistance::calculateDistance($mainlat, $mainlong, $destinationLat, $destinationLon);
+
+            $shipping = ShippingCost::where('lower_limit', '<=', $distance)
+                ->where('upper_limit', '>=', $distance)
                 ->first();
 
             $grandTotal = $totalMainCost + $shipping->cost;
@@ -171,7 +184,7 @@ class TransactionController extends Controller
                 'courier_id' => $courier->id,
                 'adress_id' => $request->address_id,
                 'notes' => '',
-                'delivery_date' => null,                    
+                'delivery_date' => now(),                    
                 'arrival_date' => null,
                 'status' => 'pending',
             ]);

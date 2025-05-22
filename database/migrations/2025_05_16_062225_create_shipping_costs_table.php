@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('shipping_costs', function (Blueprint $table) {
             $table->id(); 
-            $table->integer('lower_limit');
-            $table->integer('upper_limit');
+            $table->double('lower_limit');
+            $table->double('upper_limit');
             $table->integer('cost');
             $table->timestamps();
         });

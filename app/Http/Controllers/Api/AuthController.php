@@ -10,6 +10,7 @@ use App\Http\Requests\Auth\VerifyPasswordRequest;
 use App\Models\User;
 use App\Mail\ActivationEmail;
 use App\Mail\OTPResetPassword;
+use App\Models\Courier;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
@@ -132,6 +133,31 @@ class AuthController extends Controller
             ], 403);
         }
         
+        $token = $user->createToken('rahasia')->plainTextToken;
+
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Login Berhasil',
+            'data' => [
+                'access_token' => $token,
+                'token_type' => 'Bearer'
+                ]
+        ], 200);
+    }
+
+    public function loginKurir(LoginRequest $request)
+    {
+        $data = $request->validated();
+
+        $user = Courier::where('email', $data['email'])->first();
+
+        if (! $user || ! Hash::check($data['password'], $user->password)) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Username Atau Password Salah'
+            ], 401);
+        }
+
         $token = $user->createToken('rahasia')->plainTextToken;
 
         return response()->json([

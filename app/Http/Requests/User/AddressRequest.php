@@ -29,6 +29,8 @@ class AddressRequest extends FormRequest
             'name' => ['required', 'max:50'],
             'phone_number' => ['required', 'max:20'],
             'address' => 'required',
+            'longitude' => 'required',
+            'latitude' => 'required',
             'main_address' => 'required'
         ];
     }
@@ -41,6 +43,8 @@ class AddressRequest extends FormRequest
             'phone_number.required' => 'Nomor Handphone Wajib Diisi',
             'phone_number.max' => 'Maksimal Karakter Nomor Handphone Adalah 20',
             'address.required' => 'Alamat Wajib Diisi',
+            'longitude.required' => 'Informasi Maps Wajib Diisi',
+            'latitude.required' => 'Informasi Maps Wajib Diisi',
             'main_address.required' => 'Alamat Utama Wajib Diisi'
         ];
     }

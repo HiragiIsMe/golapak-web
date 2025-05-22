@@ -37,6 +37,8 @@ class UserController extends Controller
             'name' => $data['name'],
             'phone_number' => $data['phone_number'],
             'address' => $data['address'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
             'main_address' => $data['main_address']
         ]);
 
@@ -60,6 +62,8 @@ class UserController extends Controller
             'name' => $data['name'],
             'phone_number' => $data['phone_number'],
             'address' => $data['address'],
+            'latitude' => $data['latitude'],
+            'longitude' => $data['longitude'],
             'main_address' => $data['main_address']
         ]);
 
