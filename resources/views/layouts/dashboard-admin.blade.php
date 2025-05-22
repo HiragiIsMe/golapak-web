@@ -44,6 +44,18 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
+                        <li class="sidebar-item {{ Request::is('dashboard-admin/pesanan') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard-pesanan') }}" class='sidebar-link'>
+                                <i class="fa-solid fa-scroll"></i>
+                                <span>Pesanan</span>
+                            </a>
+                        </li>
+                        <li class="sidebar-item {{ Request::is('dashboard-admin/kasir') ? 'active' : '' }}">
+                            <a href="{{ route('dashboard-kasir') }}" class='sidebar-link'>
+                                <i class="fa-solid fa-cash-register"></i>
+                                <span>Kasir</span>
+                            </a>
+                        </li>
                         <li class="sidebar-item {{ Request::is('menu*') ? 'active' : '' }}">
                             <a href="/menu" class='sidebar-link'>
                                 <i class="fa-solid fa-utensils"></i>
