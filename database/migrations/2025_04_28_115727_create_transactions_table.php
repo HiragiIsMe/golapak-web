@@ -14,7 +14,8 @@ return new class extends Migration
         Schema::create('transactions', function (Blueprint $table) {
             $table->id();
             $table->string('transaction_code', 10)->unique();
-            $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('user_id')->nullable();
+            $table->string('nama_pelanggan_offline')->nullable();
             $table->integer('total_qty');
             $table->integer('total_main_cost');
             $table->integer('delivery_fee');

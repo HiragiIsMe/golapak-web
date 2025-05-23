@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Web\AuthController as WebAuthController;
+use App\Http\Controllers\Web\KasirController;
 use App\Http\Controllers\Web\MenuController;
 use App\Http\Controllers\Web\StokController;
 use Illuminate\Support\Facades\Route;
@@ -47,6 +48,10 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard-admin.main');
     })->name('dashboard-admin');
 
+    Route::get('kasir', [KasirController::class, 'index']);
+
+    Route::post('/checkout', [KasirController::class, 'checkout']);
+
     Route::get('/stock', [StokController::class, 'index']);
 
     Route::get('/update-tersedia/{id}', [StokController::class, 'tersedia']);
@@ -57,10 +62,6 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::post('/logout', [WebAuthController::class, 'logout'])->name('auth.logout');
 });
-
-// Route dashboard admin
-
-
 
 Route::get('/dashboard-admin/pegawai', function () {
     return view('dashboard-admin.pegawai');
@@ -76,9 +77,7 @@ Route::get('/dashboard-admin/pesanan', function () {
     return view('dashboard-checkout.main');
 })->name('dashboard-pesanan');
 
-Route::get('/dashboard-admin/kasir', function () {
-    return view('dashboard-checkout.kasir');
-})->name('dashboard-kasir');
+
 
 // Route::get('/dashboard-admin/pesanan', [PesananController::class, 'index'])->name('dashboard-pesanan');
 // Route::get('/dashboard-admin/kasir', [kasirController::class, 'index'])->name('dashboard-kasir');

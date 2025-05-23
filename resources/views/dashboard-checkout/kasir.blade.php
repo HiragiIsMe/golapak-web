@@ -9,7 +9,6 @@
             <div class="col-md-8">
                 <!-- Pencarian dan Kategori -->
                 <div class="d-flex mb-3">
-                    <input type="text" class="form-control me-2" placeholder="🔍 Cari Menu" style="max-width: 250px;">
                     <button class="btn btn-warning me-2 text-white category-btn active" data-category="makanan">Makanan</button>
                     <button class="btn btn-light category-btn" data-category="minuman">Minuman</button>
                 </div>
@@ -20,45 +19,48 @@
         <!-- Panel Makanan -->
         <div class="menu-panel">
             <div class="row g-3">
-                @for ($i = 0; $i < 6; $i++)
+                @foreach ($makanan as $data)
                     <div class="col-md-4">
                         <div class="card text-center shadow-sm">
-                            <img src="{{ asset('img/menu/makanan/mie-ayam.jpg') }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
 
                             <div class="card-body p-2">
-                            <div class="fw-bold menu-name">Mie Ayam Paket Komplit</div>
-                            <div class="text-muted menu-price">10.000</div>
+                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
+                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
                             <div class="menu-action mt-2">
                                 <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
-                                        data-name="Mie Ayam Paket Komplit" 
-                                        data-price="10000">+</button>
+                                        data-id="{{ $data['id'] }}"
+                                        data-name="{{ $data['name'] }}" 
+                                        data-price={{ $data['main_cost'] }}>+</button>
                                 </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach
             </div>
         </div>
 
         <!-- Panel Minuman -->
         <div class="menu-panel">
             <div class="row g-3">
-                @for ($i = 0; $i < 6; $i++)
+                @foreach ($minuman as $data)
                     <div class="col-md-4">
                         <div class="card text-center shadow-sm">
-                            <img src="{{ asset('img/minuman.jpg') }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+                            <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+
                             <div class="card-body p-2">
-                            <div class="fw-bold menu-name">Es Teh Manis</div>
-                            <div class="text-muted menu-price">5.000</div>
+                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
+                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
                             <div class="menu-action mt-2">
-                                <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart"
-                                        data-name="Es Teh Manis"
-                                        data-price="5000">+</button>
-                            </div>
+                                <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
+                                        data-id="{{ $data['id'] }}"
+                                        data-name="{{ $data['name'] }}" 
+                                        data-price={{ $data['main_cost'] }}>+</button>
+                                </div>
                             </div>
                         </div>
                     </div>
-                @endfor
+                @endforeach 
             </div>
         </div>
     </div>
@@ -90,6 +92,7 @@
                     <table class="table table-bordered text-center">
                         <thead class="table-light">
                             <tr>
+                                <th>ID</th>
                                 <th>Nama</th>
                                 <th>Qty</th>
                                 <th>Harga</th>
@@ -106,8 +109,6 @@
 
                 <!-- Ringkasan harga -->
                 <div class="text-end mb-3">
-                    <div>Sub Total: <strong>0</strong></div>
-                    <div>Pajak: <strong>10.000</strong></div>
                     <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">10.000</span></div>
                 </div>
 
@@ -247,6 +248,7 @@ function renderCart() {
         const item = cart[name];
         const row = document.createElement('tr');
         row.innerHTML = `
+            <td>${item.id}</td>
             <td>${name}</td>
             <td>
                 <div class="d-flex justify-content-center align-items-center gap-2">
@@ -263,9 +265,7 @@ function renderCart() {
 
     // Update subtotal and total
     document.querySelector('.text-end').innerHTML = `
-        <div>Sub Total: <strong>${subtotal.toLocaleString()}</strong></div>
-        <div>Pajak: <strong>10.000</strong></div>
-        <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">${(subtotal + 10000).toLocaleString()}</span></div>
+        <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">${(subtotal).toLocaleString()}</span></div>
     `;
 }
 
@@ -273,12 +273,14 @@ document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
         const name = e.target.dataset.name;
         const price = parseInt(e.target.dataset.price);
+        const id = e.target.dataset.id;
 
         if (!cart[name]) {
-            cart[name] = { price: price, qty: 1 };
+            cart[name] = { id: id, price: price, qty: 1 };
         } else {
             cart[name].qty++;
         }
+
 
         renderCart();
         // Ganti tombol "+" menjadi interface - qty +

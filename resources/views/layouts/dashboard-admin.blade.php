@@ -50,8 +50,8 @@
                                 <span>Pesanan</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/kasir') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-kasir') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('kasir') ? 'active' : '' }}">
+                            <a href="/kasir" class='sidebar-link'>
                                 <i class="fa-solid fa-cash-register"></i>
                                 <span>Kasir</span>
                             </a>
