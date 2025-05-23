@@ -22,38 +22,6 @@
     </div>
     
 
-    <!-- Status Pesanan Offline -->
-    <h5 class="fw-bold mb-2">Status Pesanan (Offline)</h5>
-    <div class="table-responsive mb-4">
-        <table class="table table-bordered text-center">
-            <thead>
-                <tr>
-                    <th>Kode Transaksi</th>
-                    <th>Nama Pembeli</th>
-                    <th>Status Pesanan</th>
-                    <th>Jenis Pesanan</th>
-                    <th>Aksi</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td>XB9380180283</td>
-                    <td>Budi</td>
-                    <td class="status-belum">Belum Diproses</td>
-                    <td>Dine In</td>
-                    <td><button class="icon-button offline-btn"><i class="fa-solid fa-scroll"></i></button></td>
-                </tr>
-                <tr>
-                    <td>XB9380180283</td>
-                    <td>Budi</td>
-                    <td class="status-proses">Sedang Diproses</td>
-                    <td>Take Away</td>
-                    <td><button class="icon-button offline-btn"><i class="fa-solid fa-scroll"></i></button></td>
-                </tr>
-            </tbody>
-        </table>
-    </div>
-
     <!-- Konfirmasi Pembelian Online -->
     <h5 class="fw-bold mb-2">Status Pembelian (Online)</h5>
     <div class="table-responsive">

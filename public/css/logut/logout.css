@@ -12,14 +12,16 @@
 
 .logout-section {
     padding: 1rem;
-    border-top: 1px solid #ccc;
-    background-color: #f8f9fa;
+    background: #09142D;
+    border-top: 1px solid rgba(255, 255, 255, 0.3);
+    color: white;
 }
+
 
 .btn-logout {
     width: 100%;
     padding: 10px;
-    background-color: #dc3545;
+    background-color: #ff0000;
     border: none;
     color: white;
     font-weight: bold;
