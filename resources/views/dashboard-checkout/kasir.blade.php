@@ -28,7 +28,6 @@
                             <div class="card-body p-2">
                             <div class="fw-bold menu-name">Mie Ayam Paket Komplit</div>
                             <div class="text-muted menu-price">10.000</div>
-
                             <div class="menu-action mt-2">
                                 <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
                                         data-name="Mie Ayam Paket Komplit" 
@@ -49,9 +48,13 @@
                         <div class="card text-center shadow-sm">
                             <img src="{{ asset('img/minuman.jpg') }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
                             <div class="card-body p-2">
-                                <div class="fw-bold">Es Teh Manis</div>
-                                <div class="text-muted">5.000</div>
-                                <button class="btn btn-warning text-white btn-sm mt-2 rounded-circle">+</button>
+                            <div class="fw-bold menu-name">Es Teh Manis</div>
+                            <div class="text-muted menu-price">5.000</div>
+                            <div class="menu-action mt-2">
+                                <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart"
+                                        data-name="Es Teh Manis"
+                                        data-price="5000">+</button>
+                            </div>
                             </div>
                         </div>
                     </div>
@@ -287,7 +290,9 @@ document.addEventListener('click', function(e) {
                 <span>1</span>
                 <button class="btn btn-outline-success btn-sm rounded-circle btn-increase" data-name="${name}">+</button>
             </div>
+            
 `;
+
     }
 
     if (e.target.classList.contains('btn-increase')) {
