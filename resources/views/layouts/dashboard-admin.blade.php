@@ -27,7 +27,7 @@
                 <div class="sidebar-header">
                     <div class="d-flex justify-content-between">
                         <div class="logo">  
-                            <a href="index.html"><img src="{{ asset('img/roby.jpg') }}" alt="Logo" srcset=""> Toko fadil</a>   
+                            <a href="index.html"><img src="{{ asset('img/logo/logo2.png') }}" alt="Logo" srcset="">Go-Lapak</a>   
                         </div>
                         <div class="toggler">
                             <a href="#" class="sidebar-hide d-xl-none d-block"><i class="bi bi-x bi-middle"></i></a>
@@ -36,8 +36,6 @@
                 </div>
                 <div class="sidebar-menu">
                     <ul class="menu">
-                        <li class="sidebar-title">Menu</li>
-
                         <li class="sidebar-item {{ Request::is('dashboard-admin') ? 'active' : '' }}">
                             <a href="{{ route('dashboard-admin') }}" class='sidebar-link'>
                                 <i class="bi bi-grid-fill"></i>
