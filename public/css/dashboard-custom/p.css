@@ -1,0 +1,43 @@
+
+
+
+/* Ganti warna default sidebar item */
+.sidebar-wrapper .menu .sidebar-link {
+    background-color: transparent;
+    color: #333; /* default teks */
+}
+
+
+.sidebar-wrapper .menu .sidebar-link span {
+    color: #ff7622;
+}
+
+/* Ganti warna hover */
+.sidebar-wrapper .menu .sidebar-link:hover {
+    background-color: #ffe9d6;
+    color: #ffffff;
+}
+
+/* Ganti warna saat aktif */
+.sidebar-wrapper .menu .sidebar-item.active .sidebar-link {
+    background-color: #ff6f00 !important;
+    color: #fff !important;
+}
+
+/* Default warna icon */
+.sidebar-wrapper .menu .sidebar-link i,
+.sidebar-wrapper .menu .sidebar-link svg {
+    color: #a5a3a3 !important;
+}
+
+/* Warna icon saat hover */
+.sidebar-wrapper .menu .sidebar-link:hover i,
+.sidebar-wrapper .menu .sidebar-link:hover svg {
+    color: #000000;
+}
+
+
+.sidebar-wrapper .menu .sidebar-item.active .sidebar-link span,
+.sidebar-wrapper .menu .sidebar-item.active .sidebar-link i {
+    color: #fff !important;
+}
