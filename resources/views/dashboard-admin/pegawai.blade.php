@@ -7,14 +7,14 @@
     <div class="d-flex justify-content-between align-items-center mb-3">
         <h4>Data Pegawai</h4>
         <!-- Tombol Tambah Pegawai -->
-        <button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modalCreatePegawai">
+        <button class="btn btn-orange" data-bs-toggle="modal" data-bs-target="#modalCreatePegawai">
             + Tambah Pegawai
         </button>
     </div>
 
     <div class="table-responsive">
         <table class="table table-bordered table-hover text-center">
-            <thead class="bg-dark text-white">
+           <thead class="table-orange text-white">
                 <tr>
                     <th>No</th>
                     <th>Username</th>
@@ -113,14 +113,23 @@
     </div>
 </div>
 <style>
+
+.table-orange {
+    background-color: #f15a24;
+}
+
+
+    /* style buat create ama edit */
     .text-orange {
         color: #f15a24;
     }
     .btn-orange {
-        background-color: #f15a24;
+        background-color: #09142d;
         color: white;
-        border-radius: 6px;
+        border-radius: 13px;
         padding: 6px 20px;
+        font-weight: bold;
+
     }
     .bg-light-grey {
         background-color: #eaeaea;

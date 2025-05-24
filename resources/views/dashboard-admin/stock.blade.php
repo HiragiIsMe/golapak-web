@@ -15,7 +15,7 @@
     <!-- Table dummy -->
     <div class="table-responsive">
         <table class="table table-bordered table-hover rounded shadow-sm text-center">
-            <thead class="bg-dark text-white">
+            <thead class="table-orange text-white">
                 <tr>
                     <th>No</th>
                     <th>Nama</th>
@@ -102,6 +102,9 @@
 </div> --}}
 
 <style>
+    .table-orange {
+        background-color: #f15a24;
+    }
     .text-orange {
         color: #f15a24;
     }

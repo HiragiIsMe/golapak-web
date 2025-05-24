@@ -24,6 +24,10 @@
 
     <!-- Konfirmasi Pembelian Online -->
     <h5 class="fw-bold mb-2">Status Pembelian (Online)</h5>
+      <div class="mb-3">
+       <input type="text" id="search-konfirmasi" class="form-control w-25" placeholder="🔍 Cari Transaksi Online...">
+      </div>
+
     <div class="table-responsive">
         <table class="table table-bordered text-center">
             <thead>
@@ -241,6 +245,15 @@ btnTakeAway.addEventListener("click", () => {
 
 });
 
+  document.getElementById('search-konfirmasi').addEventListener('keyup', function () {
+        const keyword = this.value.toLowerCase();
+        const rows = document.querySelectorAll('table tbody tr');
+
+        rows.forEach(row => {
+            const rowText = row.textContent.toLowerCase();
+            row.style.display = rowText.includes(keyword) ? '' : 'none';
+        });
+    });
 
 </script>
 
