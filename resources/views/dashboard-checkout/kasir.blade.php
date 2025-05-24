@@ -13,10 +13,8 @@
                     <button class="btn btn-light category-btn" data-category="minuman">Minuman</button>
                 </div>
 
-   <!-- Menu Slider -->
    <div class="menu-slider-wrapper mb-3">
     <div class="menu-slider" id="menuSlider">
-        <!-- Panel Makanan -->
         <div class="menu-panel">
             <div class="row g-3">
                 @foreach ($makanan as $data)
@@ -40,7 +38,6 @@
             </div>
         </div>
 
-        <!-- Panel Minuman -->
         <div class="menu-panel">
             <div class="row g-3">
                 @foreach ($minuman as $data)
@@ -68,31 +65,31 @@
 </div>
 
 
-        <!-- Kanan: Keranjang -->
         <div class="col-md-4">
             <div class="bg-white p-4 shadow-sm rounded">
                 <h5 class="fw-bold text-center">Keranjang Pesanan</h5>
-         <!-- Toggle Dine In / Take Away -->
+                <form id="checkout-form" method="POST" action="/checkout">
+                
+                @csrf
+                 <input type="hidden" name="order_type" id="order_type">
+
                 <div class="order-type-toggle mx-auto mb-4">
                     <div class="toggle-wrapper">
                         <div id="toggleIndicator" class="toggle-indicator"></div>
-                        <button class="toggle-btn" id="btnDineIn">Dine In</button>
-                        <button class="toggle-btn" id="btnTakeAway">Take Away</button>
+                        <button type="button" class="toggle-btn" id="btnDineIn" onclick="setOrderType('dine-in')">Dine In</button> 
+                        <button type="button" class="toggle-btn" id="btnTakeAway" onclick="setOrderType('take-away')">Take Away</button>
                     </div>
                 </div>
-
-                <div class="mb-2"><strong>Kode Transaksi:</strong> XB9380180283</div>
+                
                 <div class="mb-3">
                     <strong>Nama Pembeli:</strong>
-                    <input type="text" class="form-control mt-1" placeholder="Nama Pembeli">
+                    <input type="text" class="form-control mt-1" placeholder="Nama Pembeli" name="pembeli" required>
                 </div>
 
-                <!-- Tabel pesanan -->
                 <div class="table-responsive mb-3">
                     <table class="table table-bordered text-center">
                         <thead class="table-light">
                             <tr>
-                                <th>ID</th>
                                 <th>Nama</th>
                                 <th>Qty</th>
                                 <th>Harga</th>
@@ -107,14 +104,13 @@
                     </table>
                 </div>
 
-                <!-- Ringkasan harga -->
                 <div class="text-end mb-3">
                     <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">10.000</span></div>
                 </div>
-
-                <div class="d-grid">
-                    <button class="btn btn-warning text-white">Cetak Struk</button>
-                </div>
+                    <div class="d-grid">
+                        <button class="btn btn-warning text-white">Cetak Struk</button>
+                    </div>
+                </form>
             </div>
         </div>
     </div>
@@ -215,7 +211,6 @@
         btnDineIn.classList.remove("active");
     });
 
-// Animasi Slide Menu
 const categoryBtns = document.querySelectorAll(".category-btn");
     const slider = document.getElementById("menuSlider");
 
@@ -233,9 +228,6 @@ const categoryBtns = document.querySelectorAll(".category-btn");
         });
     });
 
-
-// real time #333
-
     let cart = {};
 
 function renderCart() {
@@ -248,7 +240,6 @@ function renderCart() {
         const item = cart[name];
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${item.id}</td>
             <td>${name}</td>
             <td>
                 <div class="d-flex justify-content-center align-items-center gap-2">
@@ -263,11 +254,34 @@ function renderCart() {
         subtotal += item.price * item.qty;
     });
 
-    // Update subtotal and total
     document.querySelector('.text-end').innerHTML = `
         <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">${(subtotal).toLocaleString()}</span></div>
     `;
 }
+document.getElementById('checkout-form').addEventListener('submit', function (e) {
+    const form = this;
+
+    form.querySelectorAll('.cart-item').forEach(el => el.remove());
+
+    let index = 0;
+    Object.entries(cart).forEach(([name, item]) => {
+        const inputId = document.createElement('input');
+        inputId.type = 'hidden';
+        inputId.name = `menu[${index}][id]`;
+        inputId.value = item.id;
+        inputId.classList.add('cart-item');
+        form.appendChild(inputId);
+
+        const inputQty = document.createElement('input');
+        inputQty.type = 'hidden';
+        inputQty.name = `menu[${index}][qty]`;
+        inputQty.value = item.qty;
+        inputQty.classList.add('cart-item');
+        form.appendChild(inputQty);
+
+        index++;
+    });
+});
 
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
@@ -281,9 +295,8 @@ document.addEventListener('click', function(e) {
             cart[name].qty++;
         }
 
-
         renderCart();
-        // Ganti tombol "+" menjadi interface - qty +
+
         const cardBody = e.target.closest('.card-body');
         const actionArea = cardBody.querySelector('.menu-action');
         actionArea.innerHTML = `
@@ -310,10 +323,8 @@ document.addEventListener('click', function(e) {
     if (cart[name].qty > 1) {
         cart[name].qty--;
     } else {
-        // Hapus dari cart
         delete cart[name];
 
-        // Kembalikan tombol "+" di menu
         const cards = document.querySelectorAll('.card-body');
         cards.forEach(card => {
             const menuName = card.querySelector('.menu-name')?.textContent.trim();
@@ -349,6 +360,10 @@ function updateCardQtyDisplay() {
 
     
 });
+
+function setOrderType(type) {
+        document.getElementById('order_type').value = type;
+    }
 </script>
 @endsection
 
