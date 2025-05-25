@@ -21,7 +21,6 @@
         </div>
     </div>
     
-
     <!-- Konfirmasi Pembelian Online -->
     <h5 class="fw-bold mb-2">Status Pembelian (Online)</h5>
       <div class="mb-3">
@@ -57,70 +56,6 @@
             </tbody>
         </table>
     </div>
-
-    <!-- Modal Detail Pesanan -->
-<div class="modal fade" id="modalDetailPesanan" tabindex="-1" aria-labelledby="modalLabelPesanan" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered modal-lg">
-      <div class="modal-content border-orange p-4" style="border-radius: 20px; background-color: #efefef;">
-        <div class="modal-header border-0">
-          <h5 class="modal-title w-100 text-center fw-bold">Detail Pesanan (Offline)</h5>
-          <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
-        </div>
-        <div class="modal-body">
-  
-          <!-- Jenis Pesanan -->
-          <div class="order-type-toggle mx-auto mb-4">
-            <div class="toggle-wrapper">
-                <div id="toggleIndicator" class="toggle-indicator"></div>
-                <button class="toggle-btn" id="btnDineIn">Dine In</button>
-                <button class="toggle-btn" id="btnTakeAway">Take Away</button>
-            </div>
-        </div>
-  
-          <!-- Informasi Transaksi -->
-          <div class="mb-3">
-            <strong>Kode Transaksi:</strong> XB9380180283 <br>
-            <strong>Nama Pembeli:</strong> <input type="text" class="form-control mt-1" value="Budi">
-          </div>
-  
-          <!-- Tabel Pesanan -->
-          <div class="table-responsive mb-4">
-            <table class="table text-center">
-              <thead>
-                <tr>
-                  <th>Nama</th>
-                  <th>Qty</th>
-                  <th>Harga</th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-              </tbody>
-            </table>
-          </div>
-  
-          <hr>
-  
-          <!-- Ringkasan Harga -->
-          <div class="text-end">
-            <div>Sub Total: <strong>120.000</strong></div>
-            <div>Pajak: <strong>10.000</strong></div>
-            <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">140.000</span></div>
-          </div>
-  
-          <!-- Tombol Aksi -->
-          <div class="mt-4 d-flex justify-content-between">
-            <button class="btn btn-secondary">Kembali</button>
-            <button class="btn btn-danger">Batalkan Pesanan</button>
-            <button class="btn btn-warning text-white">Cetak Struk</button>
-          </div>
-  
-        </div>
-      </div>
-    </div>
-  </div>
 
   <!-- Modal Konfirmasi Pembelian -->
 <div class="modal fade" id="modalKonfirmasiPembelian" tabindex="-1" aria-hidden="true">
@@ -176,7 +111,7 @@
   
 </div>
 
-<!-- Script waktu -->
+
 <script>
     function updateTime() {
         const now = new Date();
@@ -193,57 +128,14 @@
 
     setInterval(updateTime, 1000);
 
+  // Tombol pop out modal online
+  document.querySelectorAll('.online-btn').forEach(button => {
+    button.addEventListener('click', () => {
+      const modal = new bootstrap.Modal(document.getElementById('modalKonfirmasiPembelian'));
+      modal.show();
+    });
 
-   
-
-// Toggle Dine In / Take Away
-document.getElementById("btnDineIn").addEventListener("click", function() {
-  this.classList.add("btn-warning", "text-white");
-  this.classList.remove("btn-outline-secondary");
-  document.getElementById("btnTakeAway").classList.remove("btn-warning", "text-white");
-  document.getElementById("btnTakeAway").classList.add("btn-outline-secondary");
-});
-
-document.getElementById("btnTakeAway").addEventListener("click", function() {
-  this.classList.add("btn-warning", "text-white");
-  this.classList.remove("btn-outline-secondary");
-  document.getElementById("btnDineIn").classList.remove("btn-warning", "text-white");
-  document.getElementById("btnDineIn").classList.add("btn-outline-secondary");
-});
-
-// Tombol pop out modal offline
-document.querySelectorAll('.offline-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = new bootstrap.Modal(document.getElementById('modalDetailPesanan'));
-    modal.show();
   });
-});
-
-// Tombol pop out modal online
-document.querySelectorAll('.online-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = new bootstrap.Modal(document.getElementById('modalKonfirmasiPembelian'));
-    modal.show();
-  });
-
-// btn dine in dan take away
-const btnDineIn = document.getElementById("btnDineIn");
-const btnTakeAway = document.getElementById("btnTakeAway");
-const toggleIndicator = document.getElementById("toggleIndicator");
-
-btnDineIn.addEventListener("click", () => {
-    toggleIndicator.style.left = "0%";
-    btnDineIn.classList.add("active");
-    btnTakeAway.classList.remove("active");
-});
-
-btnTakeAway.addEventListener("click", () => {
-    toggleIndicator.style.left = "50%";
-    btnTakeAway.classList.add("active");
-    btnDineIn.classList.remove("active");
-});
-
-});
 
   document.getElementById('search-konfirmasi').addEventListener('keyup', function () {
         const keyword = this.value.toLowerCase();
@@ -267,9 +159,8 @@ btnTakeAway.addEventListener("click", () => {
     font-weight: bold;
     font-size: 18px;
     box-shadow: 0 2px 6px rgba(0,0,0,0.1);
-    min-height: 130px; /* kamu bisa atur sesuai kebutuhan */
+    min-height: 130px; 
     }
-
 
     .box-number {
         font-size: 32px;
