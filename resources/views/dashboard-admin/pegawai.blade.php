@@ -117,8 +117,6 @@
 .table-orange {
     background-color: #f15a24;
 }
-
-
     /* style buat create ama edit */
     .text-orange {
         color: #f15a24;

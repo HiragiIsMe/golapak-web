@@ -15,7 +15,7 @@
 
     <div class="table-responsive mb-5">
         <table class="table table-bordered text-center">
-            <thead class="bg-warning text-white">
+            <thead class="table-orange text-white">
                 <tr>
                     <th>Nomor Transaksi</th>
                     <th>Total Item</th>
@@ -41,7 +41,7 @@
     <h4>DETAIL TRANSAKSI</h4>
     <div class="table-responsive">
         <table class="table table-bordered text-center">
-            <thead class="bg-warning text-white">
+            <thead class="table-orange text-white">
                 <tr>
                     <th>Nama Barang</th>
                     <th>Harga Barang</th>
@@ -62,4 +62,9 @@
         </table>
     </div>
 </div>
+<style>
+    .table-orange {
+    background-color: #f15a24;
+}
+</style>
 @endsection
