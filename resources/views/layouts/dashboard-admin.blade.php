@@ -42,8 +42,8 @@
                                 <span>Dashboard</span>
                             </a>
                         </li>
-                        <li class="sidebar-item {{ Request::is('dashboard-admin/pesanan') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-pesanan') }}" class='sidebar-link'>
+                        <li class="sidebar-item {{ Request::is('pesanan') ? 'active' : '' }}">
+                            <a href="/pesanan" class='sidebar-link'>
                                 <i class="fa-solid fa-scroll"></i>
                                 <span>Pesanan</span>
                             </a>

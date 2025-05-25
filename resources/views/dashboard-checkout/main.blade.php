@@ -10,7 +10,7 @@
         <div class="col-md-6 d-flex">
             <div class="box-info w-100 h-100">
                 JUMLAH PESANAN <br> HARI INI
-                <div class="box-number">000</div>
+                <div class="box-number">{{ $jumlah }}</div>
             </div>
         </div>
         <div class="col-md-6 d-flex">
@@ -35,25 +35,20 @@
                     <th>Kode Transaksi</th>
                     <th>Nama Pembeli</th>
                     <th>Status Pembelian</th>
-                    <th>Jenis Pesanann</th>
+                    <th>Jenis Pembayaran</th>
                     <th>Aksi</th>
                 </tr>
             </thead>
             <tbody>
-                <tr>
-                    <td>XB9380180283</td>
-                    <td>Budi</td>
-                    <td class="status-konfirmasi">Menunggu Konfirmasi</td>
-                    <td>Take Away</td>
-                    <td><button class="icon-button online-btn"><i class="fa-solid fa-tarp"></i></button></td>
-                </tr>
-                <tr>
-                    <td>XB9380180283</td>
-                    <td>Budi</td>
-                    <td class="status-proses">Sedang Diantar</td>
-                    <td>Delivery</td>
-                    <td><button class="icon-button online-btn"><i class="fa-solid fa-tarp"></i></button></td>
-                </tr>
+                @foreach ($data as $a)
+                    <tr>
+                        <td>{{ $a->transaction_code }}</td>
+                        <td>{{ $a->name }}</td>
+                        <td class="status-konfirmasi">{{ $a->status }}</td>
+                        <td>{{ $a->payment_method }}</td>
+                        <td><a href="/pesanan/{{ $a->id }}"><button class="icon-button online-btn"><i class="fa-solid fa-tarp"></i></button></a></td>
+                    </tr>
+                @endforeach
             </tbody>
         </table>
     </div>

@@ -4,6 +4,7 @@ use App\Http\Controllers\Api\AuthController;
 use App\Http\Controllers\Web\AuthController as WebAuthController;
 use App\Http\Controllers\Web\KasirController;
 use App\Http\Controllers\Web\MenuController;
+use App\Http\Controllers\Web\PesananController;
 use App\Http\Controllers\Web\StokController;
 use Illuminate\Support\Facades\Route;
 
@@ -48,7 +49,11 @@ Route::group(['middleware' => 'auth'], function() {
         return view('dashboard-admin.main');
     })->name('dashboard-admin');
 
-    Route::get('kasir', [KasirController::class, 'index']);
+    Route::get('/pesanan', [PesananController::class, 'index']);
+
+    Route::get('/pesanan/{id}', [PesananController::class, 'index']);
+
+    Route::get('/kasir', [KasirController::class, 'index']);
 
     Route::post('/checkout', [KasirController::class, 'checkout']);
 
@@ -70,13 +75,6 @@ Route::get('/dashboard-admin/pegawai', function () {
 Route::get('/dashboard-admin/riwayat-transaksi', function () {
     return view('dashboard-admin.riwayat');
 })->name('dashboard-riwayat');
-
-
-// dashboard kasir
-Route::get('/dashboard-admin/pesanan', function () {
-    return view('dashboard-checkout.main');
-})->name('dashboard-pesanan');
-
 
 
 // Route::get('/dashboard-admin/pesanan', [PesananController::class, 'index'])->name('dashboard-pesanan');

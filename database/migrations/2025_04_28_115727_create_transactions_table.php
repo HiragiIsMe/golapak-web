@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('total_main_cost');
             $table->integer('delivery_fee');
             $table->integer('grand_total');
-            $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done', 'canceled']);
+            $table->enum('status', ['pending', 'cooking', 'on_delivery', 'done', 'canceled', 'canceled_done']);
             $table->enum('order_type', ['dine_in', 'take_Away', 'deliver']);
             $table->enum('payment_method', ['cod', 'transfer', 'cash'])->nullable();
             $table->string('account_number')->nullable();
