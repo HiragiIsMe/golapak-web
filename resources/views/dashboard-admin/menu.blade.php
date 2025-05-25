@@ -81,7 +81,6 @@
             });
         });
     </script>
-
     @if (session('success-insert'))
     <script>
         Swal.fire({

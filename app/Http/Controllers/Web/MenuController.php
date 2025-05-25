@@ -51,7 +51,7 @@ class MenuController extends Controller
             'image' => $imagePath,
             'main_cost' => $request->main_cost,
             'tipe' => $request->tipe,
-            'stock' => false,
+            'stock' => 1,
         ]);
 
         return redirect('/menu')->with('success-insert', 'Data Berhasil Ditambah');
@@ -122,4 +122,7 @@ class MenuController extends Controller
 
         return redirect('/menu')->with('success-delete', 'Data Berhasil DiHapus');
     }
+    
+
+
 }

@@ -5,14 +5,12 @@
 @section('content')
 <div class="container-fluid p-4">
     <div class="row">
-        <!-- Kiri: Daftar Menu -->
-            <div class="col-md-8">
-                <!-- Pencarian dan Kategori -->
-                <div class="d-flex mb-3">
-                    <button class="btn btn-warning me-2 text-white category-btn active" data-category="makanan">Makanan</button>
-                    <button class="btn btn-light category-btn" data-category="minuman">Minuman</button>
-                </div>
-
+        <div class="col-md-8">
+            <div class="d-flex mb-3 align-items-center gap-2">
+            <input type="text" id="menuSearch" class="form-control w-50" placeholder="Cari menu...">
+            <button class="btn category-btn active" data-category="makanan">Makanan</button>
+            <button class="btn category-btn" data-category="minuman">Minuman</button>
+        </div>
    <div class="menu-slider-wrapper mb-3">
     <div class="menu-slider" id="menuSlider">
         <div class="menu-panel">
@@ -26,7 +24,7 @@
                             <div class="fw-bold menu-name">{{ $data['name'] }}</div>
                             <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
                             <div class="menu-action mt-2">
-                                <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
+                                <button class="btn qty-button btn-warning add-to-cart" 
                                         data-id="{{ $data['id'] }}"
                                         data-name="{{ $data['name'] }}" 
                                         data-price={{ $data['main_cost'] }}>+</button>
@@ -49,7 +47,7 @@
                             <div class="fw-bold menu-name">{{ $data['name'] }}</div>
                             <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
                             <div class="menu-action mt-2">
-                                <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
+                               <button class="btn qty-button btn-warning add-to-cart" 
                                         data-id="{{ $data['id'] }}"
                                         data-name="{{ $data['name'] }}" 
                                         data-price={{ $data['main_cost'] }}>+</button>
@@ -105,7 +103,7 @@
                 </div>
 
                 <div class="text-end mb-3">
-                    <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">10.000</span></div>
+                    <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">0</span></div>
                 </div>
                     <div class="d-grid">
                         <button class="btn btn-warning text-white">Cetak Struk</button>
@@ -117,6 +115,57 @@
 </div>
 
 <style>
+    .menu-action {
+    display: flex;
+    justify-content: center;
+}
+
+    .qty-button {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
+    padding: 0;
+    font-weight: bold;
+    font-size: 16px;
+    line-height: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: 0.2s;
+}
+
+.qty-button.btn-outline-success {
+    border: 2px solid #198754; /* Bootstrap success */
+    color: #198754;
+    background-color: white;
+}
+
+.qty-button.btn-outline-success:hover {
+    background-color: #198754;
+    color: white;
+}
+
+.qty-display {
+    min-width: 24px;
+    text-align: center;
+    font-weight: 500;
+}
+
+    .category-btn {
+    background-color: #f8f9fa; /* abu-abu terang / bootstrap-light */
+    color: #333;
+    border: 1px solid #ff7f24;
+    transition: 0.3s;
+}
+
+.category-btn.active {
+    background-color: #ff7f24;
+    color: white;
+}
+
+#menuSearch {
+    max-width: 250px;
+}
 
 .order-type-toggle {
     width: 220px;
@@ -240,16 +289,16 @@ function renderCart() {
         const item = cart[name];
         const row = document.createElement('tr');
         row.innerHTML = `
-            <td>${name}</td>
-            <td>
-                <div class="d-flex justify-content-center align-items-center gap-2">
-                    <button class="btn btn-outline-success btn-sm rounded-circle btn-decrease" data-name="${name}">-</button>
-                    <span>${item.qty}</span>
-                    <button class="btn btn-outline-success btn-sm rounded-circle btn-increase" data-name="${name}">+</button>
-                </div>
-            </td>
-            <td>${(item.price * item.qty).toLocaleString()}</td>
-        `;
+        <td>${name}</td>
+        <td>
+            <div class="d-flex justify-content-center align-items-center gap-2">
+                <button class="btn qty-button btn-outline-success btn-decrease" data-name="${name}">–</button>
+                <span class="qty-display">${item.qty}</span>
+                <button class="btn qty-button btn-outline-success btn-increase" data-name="${name}">+</button>
+            </div>
+        </td>
+        <td>${(item.price * item.qty).toLocaleString()}</td>
+    `;
         tbody.appendChild(row);
         subtotal += item.price * item.qty;
     });
@@ -300,12 +349,11 @@ document.addEventListener('click', function(e) {
         const cardBody = e.target.closest('.card-body');
         const actionArea = cardBody.querySelector('.menu-action');
         actionArea.innerHTML = `
-            <div class="d-flex justify-content-center align-items-center gap-2">
-                <button class="btn btn-outline-success btn-sm rounded-circle btn-decrease" data-name="${name}">-</button>
-                <span>1</span>
-                <button class="btn btn-outline-success btn-sm rounded-circle btn-increase" data-name="${name}">+</button>
-            </div>
-            
+    <div class="d-flex justify-content-center align-items-center gap-2">
+        <button class="btn qty-button btn-outline-success btn-decrease" data-name="${name}">–</button>
+        <span class="qty-display">${cart[name].qty}</span>
+        <button class="btn qty-button btn-outline-success btn-increase" data-name="${name}">+</button>
+    </div>
 `;
 
     }
@@ -332,11 +380,12 @@ document.addEventListener('click', function(e) {
                 const menuAction = card.querySelector('.menu-action');
                 const price = card.querySelector('.menu-price')?.textContent.replace('.', '').trim();
 
-                menuAction.innerHTML = `
-                    <button class="btn btn-warning text-white btn-sm rounded-circle add-to-cart" 
-                            data-name="${name}" 
-                            data-price="${price}">+</button>
-                `;
+               menuAction.innerHTML = `
+                <button class="btn qty-button btn-warning add-to-cart" 
+                        data-id="${cart[name]?.id || ''}" 
+                        data-name="${name}" 
+                        data-price="${price}">+</button>
+            `;
             }
         });
     }
@@ -364,6 +413,43 @@ function updateCardQtyDisplay() {
 function setOrderType(type) {
         document.getElementById('order_type').value = type;
     }
+
+// search bar js
+    document.getElementById("menuSearch").addEventListener("input", function () {
+    const keyword = this.value.toLowerCase();
+    const allCards = document.querySelectorAll(".menu-panel.active .card");
+
+    allCards.forEach(card => {
+        const name = card.querySelector(".menu-name").textContent.toLowerCase();
+        if (name.includes(keyword)) {
+            card.parentElement.style.display = "block";
+        } else {
+            card.parentElement.style.display = "none";
+        }
+    });
+});
+
+function updateActivePanel() {
+    document.querySelectorAll('.menu-panel').forEach(panel => panel.classList.remove('active'));
+    const category = document.querySelector('.category-btn.active').getAttribute('data-category');
+    const index = category === 'makanan' ? 0 : 1;
+    document.querySelectorAll('.menu-panel')[index].classList.add('active');
+}
+categoryBtns.forEach(btn => {
+    btn.addEventListener("click", function () {
+        categoryBtns.forEach(b => b.classList.remove("active"));
+        this.classList.add("active");
+
+        const category = this.getAttribute("data-category");
+        slider.style.transform = category === "makanan" ? "translateX(0%)" : "translateX(-50%)";
+
+        updateActivePanel();
+    });
+});
+
+
+updateActivePanel();
+
 </script>
 @endsection
 
