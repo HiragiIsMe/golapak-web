@@ -51,7 +51,15 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/pesanan', [PesananController::class, 'index']);
 
-    Route::get('/pesanan/{id}', [PesananController::class, 'index']);
+    Route::get('/pesanan/{id}', [PesananController::class, 'getDetail']);
+
+    Route::get('/pesanan-status', [PesananController::class, 'filterStatus']);
+
+    Route::get('/pesanan-cancel/{id}', [PesananController::class, 'cancelPesanan']);
+
+    Route::get('/pesanan-accept/{id}', [PesananController::class, 'acceptPesanan']);
+
+    Route::get('/pesanan-cancel-done/{id}', [PesananController::class, 'cancelDonePesanan']);
 
     Route::get('/kasir', [KasirController::class, 'index']);
 

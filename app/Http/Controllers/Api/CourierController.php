@@ -22,6 +22,7 @@ class CourierController extends Controller
         ->join('addresses', 'order_deliveries.adress_id', '=', 'addresses.id')
         ->where('order_deliveries.courier_id', $user->id)
         ->where('order_deliveries.status', 'pending')
+        ->where('transactions.status', 'on_delivery')
         ->select(
             'order_deliveries.id as delivery_id',
             'order_deliveries.status',

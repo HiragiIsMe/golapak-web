@@ -25,8 +25,17 @@
     <!-- Konfirmasi Pembelian Online -->
     <h5 class="fw-bold mb-2">Status Pembelian (Online)</h5>
       <div class="mb-3">
-       <input type="text" id="search-konfirmasi" class="form-control w-25" placeholder="🔍 Cari Transaksi Online...">
-      </div>
+        <form action="/pesanan-status" method="GET">
+            @csrf
+            <label for="tipe" class="form-label">Status Transaksi</label>
+            <select class="form-select rounded-pill" id="tipe" name="status">
+                <option value="pending" {{ request('status') == 'pending' ? 'selected' : '' }}>Belum DiKonfirmasi</option>
+                <option value="cooking" {{ request('status') == 'cooking' ? 'selected' : '' }}>Dikonfirmasi</option>
+                <option value="canceled" {{ request('status') == 'canceled' ? 'selected' : '' }}>Dibatalkan User</option>
+            </select>
+            <button type="submit" class="btn btn-primary"><i class="fa-solid fa-floppy-disk"></i> Filter</button>
+        </form>
+    </div>
 
     <div class="table-responsive">
         <table class="table table-bordered text-center">
@@ -44,9 +53,22 @@
                     <tr>
                         <td>{{ $a->transaction_code }}</td>
                         <td>{{ $a->name }}</td>
-                        <td class="status-konfirmasi">{{ $a->status }}</td>
+                        <td class="status-konfirmasi">
+                            @if ($a->status == 'pending')
+                                Menunggu Konfirmasi
+                            @elseif($a->status == 'cooking')
+                                Sedang Dimasak
+                            @else
+                                Dibatalkan User    
+                            @endif
+                        </td>
                         <td>{{ $a->payment_method }}</td>
-                        <td><button class="icon-button online-btn"><i class="fa-solid fa-tarp"></i></button></td>
+                        <td>
+                          <button class="icon-button online-btn" data-id="{{ $a->id }}">
+                            <i class="fa-solid fa-tarp"></i>
+                          </button>
+                        </td>
+
                     </tr>
                 @endforeach
             </tbody>
@@ -61,45 +83,9 @@
           <h5 class="modal-title w-100 text-center fw-bold">Konfirmasi Pembelian</h5>
           <button type="button" class="btn-close position-absolute end-0 top-0 m-3" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
-        <div class="modal-body">
-  
-          <!-- Informasi Transaksi -->
-          <div class="mb-3">
-            <div><strong>Status Transaksi:</strong> <span class="text-danger fw-bold">Menunggu Konfirmasi</span></div>
-            <div><strong>Kode Transaksi:</strong> XB9380180283</div>
-            <div><strong>Jenis Pesanan:</strong> Delivery</div>
-            <div><strong>Nama Pembeli:</strong> Budi</div>
-          </div>
-  
-          <!-- Tabel Pesanan -->
-          <div class="table-responsive mb-3">
-            <table class="table text-center">
-              <thead>
-                <tr><th>Nama</th><th>Qty</th><th>Harga</th></tr>
-              </thead>
-              <tbody>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-                <tr><td>Nasi Goreng</td><td>1</td><td>10.000</td></tr>
-                <tr><td>Ongkir</td><td>1</td><td>10.000</td></tr>
-                <tr class="fw-bold text-danger"><td colspan="2">Sub Total</td><td>50.000</td></tr>
-                <tr class="fw-bold text-danger"><td colspan="2">TOTAL</td><td>50.000</td></tr>
-              </tbody>
-            </table>
-          </div>
-  
-          <!-- Alamat Pembeli -->
-          <div class="mb-4">
-            <strong>Alamat Pembeli :</strong>
-            <div>Jalan Riau Nomor 21, Krajan Barat, Sumbersari, Kec. Sumbersari, Kabupaten Jember, Jawa Timur</div>
-          </div>
-  
-          <!-- Tombol Aksi -->
-          <div class="d-flex justify-content-between">
-            <button class="btn btn-danger">Batalkan Pembelian</button>
-            <button class="btn btn-primary">Konfirmasi Pembelian</button>
-          </div>
-  
+            <div class="modal-body">
+            <!-- Akan diisi oleh AJAX -->
+            </div>
         </div>
       </div>
     </div>
@@ -107,7 +93,6 @@
   
 </div>
 
-<!-- Script waktu -->
 <script>
     function updateTime() {
         const now = new Date();
@@ -125,14 +110,26 @@
     setInterval(updateTime, 1000);
 
 
-// Tombol pop out modal online
 document.querySelectorAll('.online-btn').forEach(button => {
-  button.addEventListener('click', () => {
-    const modal = new bootstrap.Modal(document.getElementById('modalKonfirmasiPembelian'));
-    modal.show();
-  });
+    button.addEventListener('click', async function () {
+        const id = this.dataset.id;
 
+        try {
+            const response = await fetch(`/pesanan/${id}`);
+            const html = await response.text();
+
+            const modalBody = document.querySelector('#modalKonfirmasiPembelian .modal-body');
+            modalBody.innerHTML = html;
+
+            const modal = new bootstrap.Modal(document.getElementById('modalKonfirmasiPembelian'));
+            modal.show();
+        } catch (error) {
+            alert('Gagal memuat data transaksi');
+            console.error(error);
+        }
+    });
 });
+
 
   document.getElementById('search-konfirmasi').addEventListener('keyup', function () {
         const keyword = this.value.toLowerCase();
