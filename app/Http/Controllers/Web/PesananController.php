@@ -83,26 +83,28 @@ class PesananController extends Controller
                 'canceled_done' => 'Pembatalan Selesai'
             ];
             
-            $response = [
-                'transaksi' => $transaksi,
-                'transaksi' => (object)[
-                    'id_transaksi' => $transaksi->id,
-                    'status_formatted' => $status_map[$transaksi->status] ?? $transaksi->status,
-                    'transaction_code' => $transaksi->transaction_code ?? '-',
-                    'order_type' => $transaksi->order_type ?? 'unknown',
-                    'nama_pembeli' => $transaksi->nama_pembeli ?? $transaksi->nama_pelanggan_offline ?? 'Tidak diketahui',
-                    'alamat_pembeli' => $transaksi->alamat_pembeli ?? 'Alamat tidak tersedia'
-                ],
-                'detail_pesanan' => $detail_pesanan->map(function($item) {
-                    return (object)[
-                        'nama_menu' => $item->nama_menu,
-                        'qty' => $item->qty,
-                        'main_cost_formatted' => 'Rp '.number_format($item->main_cost, 0, ',', '.')
-                    ];
-                }),
-                'subtotal_formatted' => 'Rp '.number_format($subtotal, 0, ',', '.'),
-                'grand_total_formatted' => 'Rp '.number_format($grand_total, 0, ',', '.')
-            ];
+                $response = [
+                        'transaksi' => $transaksi,
+                        'transaksi' => (object)[
+                            'id_transaksi' => $transaksi->id,
+                            'rekening' => $transaksi->account_number,
+                            'metode_bayar' => $transaksi->payment_method,
+                            'status_formatted' => $status_map[$transaksi->status] ?? $transaksi->status,
+                            'transaction_code' => $transaksi->transaction_code ?? '-',
+                            'order_type' => $transaksi->order_type ?? 'unknown',
+                            'nama_pembeli' => $transaksi->nama_pembeli ?? $transaksi->nama_pelanggan_offline ?? 'Tidak diketahui',
+                            'alamat_pembeli' => $transaksi->alamat_pembeli ?? 'Alamat tidak tersedia'
+                        ],
+                        'detail_pesanan' => $detail_pesanan->map(function($item) {
+                            return (object)[
+                                'nama_menu' => $item->nama_menu,
+                                'qty' => $item->qty,
+                                'main_cost_formatted' => 'Rp '.number_format($item->main_cost, 0, ',', '.')
+                            ];
+                        }),
+                        'subtotal_formatted' => 'Rp '.number_format($subtotal, 0, ',', '.'),
+                        'grand_total_formatted' => 'Rp '.number_format($grand_total, 0, ',', '.')
+                ];
 
             return view('partials.detail', $response)->render();
 
