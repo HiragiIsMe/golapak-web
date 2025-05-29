@@ -5,6 +5,8 @@ namespace App\Http\Controllers\Web;
 use App\Http\Controllers\Controller;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
+use App\Models\TransactionDetail;
+use Illuminate\Support\Facades\Log;
 
 class TransactionController extends Controller
 {
@@ -18,20 +20,18 @@ class TransactionController extends Controller
         return view('dashboard-admin.riwayat', compact('transactions'));
     }
 
-    public function show($id)
-    {
-        $transaction = Transaction::with(['details.menu'])->findOrFail($id);
+   public function getDetail($id)
+{
+    try {
+        $details = TransactionDetail::with('menu')
+            ->where('transaction_id', $id)
+            ->get();
 
-        return response()->json([
-            'transaction_code' => $transaction->transaction_code,
-            'details' => $transaction->details->map(function ($detail) {
-                return [
-                    'menu' => $detail->menu,
-                    'main_cost' => $detail->main_cost,
-                    'qty' => $detail->qty,
-                    'main_subtotal' => $detail->main_subtotal
-                ];
-            })
-        ]);
+        return view('partials.tabel_detail', compact('details'));
+    } catch (\Exception $e) {
+        Log::error('GAGAL AMBIL DETAIL TRANSAKSI: ' . $e->getMessage());
+        return response()->json(['error' => 'Gagal mengambil detail'], 500);
     }
+}
+
 }
