@@ -5,6 +5,7 @@ use App\Http\Controllers\Web\AuthController as WebAuthController;
 use App\Http\Controllers\Web\KasirController;
 use App\Http\Controllers\Web\MenuController;
 use App\Http\Controllers\Web\PegawaiController;
+use App\Http\Controllers\Web\TransactionController;
 use App\Http\Controllers\Web\PesananController;
 use App\Http\Controllers\Web\StokController;
 use Illuminate\Support\Facades\Route;
@@ -84,9 +85,10 @@ Route::put('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'update']
 Route::delete('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('dashboard-admin.pegawai.destroy');
 
 
-Route::get('/dashboard-admin/riwayat-transaksi', function () {
-    return view('dashboard-admin.riwayat');
-})->name('dashboard-riwayat');
+
+
+Route::get('/dashboard-admin/riwayat-transaksi', [TransactionController::class, 'index'])->name('dashboard-riwayat');
+
 
 
 // Route::get('/dashboard-admin/pesanan', [PesananController::class, 'index'])->name('dashboard-pesanan');
