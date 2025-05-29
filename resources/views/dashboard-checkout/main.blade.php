@@ -144,6 +144,10 @@ document.querySelectorAll('.online-btn').forEach(button => {
 </script>
 
 <style>
+.btn-primary {
+    margin: 8px;
+    border-radius: 8px;
+}
     .box-info {
     background-color: #ffffff;
     border-radius: 10px;

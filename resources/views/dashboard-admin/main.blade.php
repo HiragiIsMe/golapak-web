@@ -3,6 +3,14 @@
 @section('title', 'Dashboard Home')
 
 @section('content')
+<div class="d-flex justify-content-end align-items-center mb-3">
+    <label class="form-switch me-2">
+        <input type="checkbox" id="toggle-toko" checked>
+        <i></i>
+    </label>
+    <span id="status-toko" class="fw-bold">Toko Online Aktif</span>
+</div> 
+
 <div class="page-heading">
     <h3>Profile Statistics</h3>
 </div>
@@ -16,29 +24,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon purple">
-                                        <i class="iconly-boldShow"></i>
+                                        <i class="fa-solid fa-cart-shopping"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Jumlah Transaksi hari ini</h6>
-                                    <h6 class="font-extrabold mb-0">112.000</h6>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-6 col-lg-3 col-md-6">
-                    <div class="card">
-                        <div class="card-body px-3 py-4-5">
-                            <div class="row">
-                                <div class="col-md-4">
-                                    <div class="stats-icon blue">
-                                        <i class="iconly-boldProfile"></i>
-                                    </div>
-                                </div>
-                                <div class="col-md-8">
-                                    <h6 class="text-muted font-semibold">Pemasukan hari ini </h6>
-                                    <h6 class="font-extrabold mb-0">183.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $jumlahTransaksi }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -50,12 +41,29 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon green">
-                                        <i class="iconly-boldAdd-User"></i>
+                                        <i class="fa-solid fa-fire-burner"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Pesanan diproses</h6>
-                                    <h6 class="font-extrabold mb-0">80.000</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $pesananDiproses }}</h6>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                 <div class="col-6 col-lg-3 col-md-6">
+                    <div class="card">
+                        <div class="card-body px-3 py-4-5">
+                            <div class="row">
+                                <div class="col-md-4">
+                                    <div class="stats-icon blue">
+                                        <i class="fa-solid fa-people-group"></i>
+                                    </div>
+                                </div>
+                                <div class="col-md-8">
+                                    <h6 class="text-muted font-semibold">Total Pengguna</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $totalPengguna }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -67,12 +75,12 @@
                             <div class="row">
                                 <div class="col-md-4">
                                     <div class="stats-icon red">
-                                        <i class="iconly-boldBookmark"></i>
+                                        <i class="fa-solid fa-user-nurse"></i>
                                     </div>
                                 </div>
                                 <div class="col-md-8">
                                     <h6 class="text-muted font-semibold">Jumlah Pegawai</h6>
-                                    <h6 class="font-extrabold mb-0">112</h6>
+                                    <h6 class="font-extrabold mb-0">{{ $jumlahPegawai }}</h6>
                                 </div>
                             </div>
                         </div>
@@ -84,123 +92,10 @@
                     <div class="card">
                         <div class="card-header">
                             <h4>Pemasukan</h4>
+                             {{-- <h6 class="font-extrabold mb-0">Rp {{ number_format($pemasukan, 0, ',', '.') }}</h6> --}}
                         </div>
                         <div class="card-body">
                             <div id="chart-profile-visit"></div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="row">
-                <div class="col-12 col-xl-4">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Profile Visit</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-primary" width="32" height="32" fill="blue"
-                                            style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Europe</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">862</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-europe"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-success" width="32" height="32" fill="blue"
-                                            style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">America</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">375</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-america"></div>
-                                </div>
-                            </div>
-                            <div class="row">
-                                <div class="col-6">
-                                    <div class="d-flex align-items-center">
-                                        <svg class="bi text-danger" width="32" height="32" fill="blue"
-                                            style="width:10px">
-                                            <use
-                                                xlink:href="assets/vendors/bootstrap-icons/bootstrap-icons.svg#circle-fill" />
-                                        </svg>
-                                        <h5 class="mb-0 ms-3">Indonesia</h5>
-                                    </div>
-                                </div>
-                                <div class="col-6">
-                                    <h5 class="mb-0">1025</h5>
-                                </div>
-                                <div class="col-12">
-                                    <div id="chart-indonesia"></div>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-                <div class="col-12 col-xl-8">
-                    <div class="card">
-                        <div class="card-header">
-                            <h4>Latest Comments</h4>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-hover table-lg">
-                                    <thead>
-                                        <tr>
-                                            <th>Name</th>
-                                            <th>Comment</th>
-                                        </tr>
-                                    </thead>
-                                    <tbody>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="assets/images/faces/5.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Cantik</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Congratulations on your graduation!</p>
-                                            </td>
-                                        </tr>
-                                        <tr>
-                                            <td class="col-3">
-                                                <div class="d-flex align-items-center">
-                                                    <div class="avatar avatar-md">
-                                                        <img src="assets/images/faces/2.jpg">
-                                                    </div>
-                                                    <p class="font-bold ms-3 mb-0">Si Ganteng</p>
-                                                </div>
-                                            </td>
-                                            <td class="col-auto">
-                                                <p class=" mb-0">Wow amazing design! Can you make another
-                                                    tutorial for
-                                                    this design?</p>
-                                            </td>
-                                        </tr>
-                                    </tbody>
-                                </table>
-                            </div>
                         </div>
                     </div>
                 </div>
@@ -214,8 +109,8 @@
                             <img src="{{ asset('img/roby.jpg') }}" alt="Face 1">
                         </div>
                         <div class="ms-3 name">
-                            <h5 class="font-bold">Aku Roby</h5>
-                            <h6 class="text-muted mb-0">@jmbt</h6>
+                            <h5 class="font-bold">Admin</h5>
+                            <h6 class="text-muted mb-0">@aku adalah admin</h6>
                         </div>
                     </div>
                 </div>
@@ -223,4 +118,65 @@
         </div>
     </section>
 </div>
+
+<style>
+    .form-switch {
+  position: relative;
+  display: inline-block;
+  width: 50px;
+  height: 26px;
+}
+
+.form-switch input {
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.form-switch i {
+  position: absolute;
+  cursor: pointer;
+  background-color: #ccc;
+  border-radius: 34px;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  transition: .4s;
+}
+
+.form-switch i:before {
+  position: absolute;
+  content: "";
+  height: 20px;
+  width: 20px;
+  left: 4px;
+  bottom: 3px;
+  background-color: white;
+  transition: .4s;
+  border-radius: 50%;
+}
+
+.form-switch input:checked + i {
+  background-color: #4caf50;
+}
+
+.form-switch input:checked + i:before {
+  transform: translateX(24px);
+}
+
+</style>
+<script>
+document.getElementById('toggle-toko').addEventListener('change', function() {
+    let statusText = document.getElementById('status-toko');
+    if (this.checked) {
+        statusText.textContent = 'Toko Online Aktif';
+    } else {
+        statusText.textContent = 'Toko Online Nonaktif';
+    }
+});
+</script>
+
+
+
 @endsection

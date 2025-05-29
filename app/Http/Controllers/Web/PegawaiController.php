@@ -42,7 +42,6 @@ class PegawaiController extends Controller
 
     public function store(Request $request)
     {
-        // Validasi umum
         $baseRules = [
             'name' => 'required|string|max:50',
             'email' => [
@@ -58,7 +57,6 @@ class PegawaiController extends Controller
             'role' => 'required|in:admin,courier',
         ];
 
-        // Validasi tambahan jika role adalah courier
         if ($request->input('role') === 'courier') {
             $baseRules['phone_number'] = 'required|string|max:15|unique:couriers,phone_number';
         }

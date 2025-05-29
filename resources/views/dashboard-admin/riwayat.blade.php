@@ -69,7 +69,7 @@
                 <tr id="default-detail">
                     <td colspan="5" class="text-center py-4">Belum ada transaksi yang dipilih</td>
                 </tr>
-                <!-- Detail akan dimasukkan disini melalui JavaScript -->
+                <!-- Baris detail akan dimasukkan di sini lewat AJAX -->
             </tbody>
         </table>
     </div>
@@ -83,43 +83,30 @@
         margin-top: 20px;
     }
 </style>
-@endsection
 
-@section('scripts')
 <script>
     $(document).ready(function() {
-        $('.show-detail').click(function() {
-            const transactionId = $(this).data('id');
-            
-            // Sembunyikan pesan default
-            $('#default-detail').hide();
-            
-            // Kirim request untuk mendapatkan detail transaksi
-            $.get(`/transactions/${transactionId}`, function(data) {
-                // Kosongkan isi detail sebelumnya
-                $('#detail-transaksi tbody').find('tr.detail-item').remove();
-                
-                // Tambahkan detail transaksi baru
-                data.details.forEach(detail => {
-                    const row = `
-                        <tr class="detail-item">
-                            <td>${data.transaction_code}</td>
-                            <td>${detail.menu ? detail.menu.name : 'Menu tidak ditemukan'}</td>
-                            <td>Rp ${detail.main_cost.toLocaleString('id-ID')}</td>
-                            <td>${detail.qty}</td>
-                            <td>Rp ${detail.main_subtotal.toLocaleString('id-ID')}</td>
-                        </tr>
-                    `;
-                    $('#detail-transaksi tbody').append(row);
-                });
-                
-                // Update tombol yang aktif
-                $('.show-detail').removeClass('btn-success').addClass('btn-info')
-                                .html('<i class="fas fa-eye"></i> Pilih');
-                $(this).removeClass('btn-info').addClass('btn-success')
-                       .html('<i class="fas fa-check"></i> Dipilih');
-            });
-        });
+    $('.show-detail').click(function() {
+    const transactionId = $(this).data('id');
+    const button = $(this);
+
+    $('#default-detail').hide();
+
+    $.get(`/dashboard-admin/riwayat-transaksi/detail/${transactionId}`, function(response) {
+        // Hapus detail sebelumnya
+        $('#detail-transaksi tbody').find('tr.detail-item').remove();
+
+        // Tambahkan isi baru dari response HTML partial
+        $('#detail-transaksi tbody').append(response);
+
+        // Update tombol yang aktif
+        $('.show-detail').removeClass('btn-success').addClass('btn-info')
+                         .html('<i class="fas fa-eye"></i> Pilih');
+        button.removeClass('btn-info').addClass('btn-success')
+              .html('<i class="fas fa-check"></i> Dipilih');
+    });
+});
     });
 </script>
 @endsection
+
