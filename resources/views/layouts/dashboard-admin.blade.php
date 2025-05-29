@@ -67,7 +67,7 @@
                             </a>
                         </li>
                         <li class="sidebar-item {{ Request::is('dashboard-admin/pegawai*') ? 'active' : '' }}">
-                            <a href="{{ route('dashboard-pegawai') }}" class='sidebar-link'>
+                            <a href="{{ route('dashboard-admin.pegawai') }}" class='sidebar-link'>
                                 <i class="fa-solid fa-user-group"></i>
                                 <span>Pegawai</span>
                             </a>
