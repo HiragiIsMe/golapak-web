@@ -1,6 +1,6 @@
 <footer class="footer">
     <div class="footer-section">
-        <img src="{{ asset('img/logo.png') }}" alt="Logo" class="footer-logo">
+        <img src="{{ asset('img/logo/logo.png') }}" alt="Logo" class="footer-logo">
         <div class="footer-info">
             <h3>Nama Toko</h3>
             <p>Ini Adalah Email Toko</p>
@@ -17,19 +17,10 @@
         </ul>
     </div>
 
-    <div class="footer-contact">
-        <h3>Hubungi Kami</h3>
-        <form class="footer-form">
-            <input type="text" placeholder="Nama">
-            <input type="email" placeholder="Contoh@gmail.com">
-            <input type="text" placeholder="Subjek Pesan">
-            <textarea placeholder="Pesan"></textarea>
-        </form>
-    </div>
 </footer>
 
 <section>
     <div class="footer-bottom">
-        <p>Copyright © Nama Toko 2025</p>
+        <p>Copyright © Go-Lapak 2025</p>
     </div>
 </section>
