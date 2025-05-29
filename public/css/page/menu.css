@@ -91,3 +91,51 @@
     from { transform: translateX(100%); opacity: 0; }
     to { transform: translateX(0); opacity: 1; }
 }
+
+@media (max-width: 768px) {
+    .menu-page {
+        padding: 1rem;
+    }
+
+    .menu-title {
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+    }
+
+    .menu-categories {
+        flex-wrap: wrap;
+        display: flex;
+        justify-content: center;
+        gap: 0.5rem;
+        margin-bottom: 1.5rem;
+    }
+
+    .menu-btn {
+        padding: 0.4rem 1rem;
+        margin: 0.3rem;
+        font-size: 0.9rem;
+    }
+
+    .menu-grid {
+        flex-direction: column;
+        align-items: center;
+        gap: 1.5rem;
+    }
+
+    .menu-card {
+        width: 90%;
+        padding: 1rem;
+    }
+
+    .menu-img {
+        height: 140px;
+    }
+
+    .menu-name {
+        font-size: 1.1rem;
+    }
+
+    .menu-desc {
+        font-size: 0.85rem;
+    }
+}

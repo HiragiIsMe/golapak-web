@@ -98,3 +98,62 @@
 .btn-maps:hover {
     background-color: #e67600;
 }
+@media (max-width: 768px) {
+    /* Hero Section */
+    .hero-section {
+        height: 250px;
+    }
+
+    .hero-title {
+        font-size: 2rem;
+        text-align: center;
+        padding: 0 1rem;
+    }
+
+    /* About Section */
+    .about-section {
+        padding: 2rem 1rem;
+    }
+
+    .about-logo {
+        width: 100px;
+    }
+
+    .about-desc {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    /* Visi Misi Section */
+    .visimisi-section {
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 1rem;
+        gap: 1.5rem;
+    }
+
+    .visimisi-card {
+        width: 100%;
+        max-width: 90%;
+        padding: 1.5rem;
+    }
+
+    /* Lokasi Section */
+    .lokasi-section {
+        padding: 2rem 1rem;
+    }
+
+    .lokasi-section h2 {
+        font-size: 1.5rem;
+    }
+
+    .lokasi-section p {
+        font-size: 1rem;
+        padding: 0 1rem;
+    }
+
+    .btn-maps {
+        padding: 0.6rem 1.5rem;
+        font-size: 0.9rem;
+    }
+}
