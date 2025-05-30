@@ -178,5 +178,10 @@ document.getElementById('toggle-toko').addEventListener('change', function() {
 </script>
 
 
-
 @endsection
+
+@push('scripts')
+<script>
+    window.monthlyIncome = @json($monthlyIncome);
+</script>
+@endpush

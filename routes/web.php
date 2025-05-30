@@ -12,20 +12,6 @@ use Illuminate\Support\Facades\Route;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Web\DashboardController;
 
-
-
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider and all of them will
-| be assigned to the "web" middleware group. Make something great!
-|
-*/
-
-
 // Route page
 Route::get('/', function () {
     return view('page.landing');
@@ -37,7 +23,7 @@ Route::get('/tentangkami', function () {
 
 Route::get('/menuu', function () {
     return view('page.menu');
-})->name('menuu');
+})->name('menu');
 
 Route::get('/login', function () {
     return view('page.akun');
@@ -51,11 +37,7 @@ Route::post('/login', [WebAuthController::class, 'authenticate'])->name('login')
 
 Route::group(['middleware' => 'auth'], function() {
 
-    // Route::get('/dashboard-admin', function () {
-    //     return view('dashboard-admin.main');
-    // })->name('dashboard-admin');
-
-Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
+    Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
 
     Route::get('/pesanan', [PesananController::class, 'index']);
 
@@ -81,22 +63,25 @@ Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('das
 
     Route::resource('/menu', MenuController::class);
 
+    Route::get('/dashboard-admin/pegawai', [PegawaiController::class, 'index'])->name('dashboard-admin.pegawai');
+
+    Route::post('/dashboard-admin/pegawai', [PegawaiController::class, 'store'])->name('dashboard-admin.pegawai.store');
+
+    Route::get('/dashboard-admin/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('dashboard-admin.pegawai.edit');
+
+    Route::put('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'update'])->name('dashboard-admin.pegawai.update');
+
+    Route::delete('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('dashboard-admin.pegawai.destroy');
+
+    Route::get('/dashboard-admin/riwayat-transaksi', [TransactionController::class, 'index'])->name('dashboard-riwayat');
+
+    Route::get('/dashboard-admin/riwayat-transaksi/detail/{id}', [TransactionController::class, 'getDetail']);
+
     Route::post('/logout', [WebAuthController::class, 'logout'])->name('auth.logout');
+
 });
 
-Route::get('/dashboard-admin/pegawai', [PegawaiController::class, 'index'])->name('dashboard-admin.pegawai');
-Route::post('/dashboard-admin/pegawai', [PegawaiController::class, 'store'])->name('dashboard-admin.pegawai.store');
-Route::get('/dashboard-admin/pegawai/{id}/edit', [PegawaiController::class, 'edit'])->name('dashboard-admin.pegawai.edit');
-Route::put('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'update'])->name('dashboard-admin.pegawai.update');
-Route::delete('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('dashboard-admin.pegawai.destroy');
 
-
-
-
-Route::get('/dashboard-admin/riwayat-transaksi', [TransactionController::class, 'index'])->name('dashboard-riwayat');
-// Route::get('/dashboard-admin/riwayat-transaksi/{id}', [TransactionController::class, 'show'])->name('dashboard-riwayat.show');
-// Route::get('/dashboard-admin/riwayat-transaksi/{id}', [TransactionController::class, 'show']);
-Route::get('/dashboard-admin/riwayat-transaksi/detail/{id}', [TransactionController::class, 'getDetail']);
 
 
 

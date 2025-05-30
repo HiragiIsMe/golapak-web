@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Bakso & Mie Ayam UMKM')</title>
+    <link rel="icon" href="{{ asset('img/logo/logo3.png') }}" type="image/x-icon">
     <link rel="stylesheet" href="{{ asset('css/page/landing_page.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/menu.css') }}">
     <link rel="stylesheet" href="{{ asset('css/page/kontak.css') }}">

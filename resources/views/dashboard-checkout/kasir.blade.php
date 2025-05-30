@@ -309,6 +309,7 @@ function renderCart() {
     `;
 }
 
+
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
         const name = e.target.dataset.name;

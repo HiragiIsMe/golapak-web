@@ -37,7 +37,7 @@
                     <img src="{{ asset('img/landing/Homepage_4.png') }}" alt="Slider 4">
                 </li>
                 <li class="carousel-slide">
-                    <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 5">
+                    <img src="{{ asset('img/landing/putih.png') }}" alt="Slider 5">
                 </li>
                 <li class="carousel-slide">
                     <img src="{{ asset('img/landing/bakso.jpg') }}" alt="Slider 6">
@@ -48,25 +48,28 @@
     </section>
     
 
-    <!-- Layer 5: Konten Menu -->
-    <section class="menu-landing" id="menu">
-        <h2>Menu Andalan Kami</h2>
-        <div class="menu-grid-landing">
-            <div class="menu-item-landing">
-                <img src="{{ asset('img/landing/1.jpeg') }}" alt="Menu 1">
-                <p>Bakso Jumbo</p>
-            </div>
-            <div class="menu-item-landing">
-                <img src="{{ asset('img/landing/2.jpg') }}" alt="Menu 2">
-                <p>Mie Ayam Komplit</p>
-            </div>
-            <div class="menu-item-landing">
-                <img src="{{ asset('img/landing/3.jpeg') }}" alt="Menu 3">
-                <p>Bakso Urat</p>
-            </div>
+<!-- Layer 5: Konten Menu -->
+<section class="menu-landing" id="menu">
+    <h2>Menu Andalan Kami</h2>
+    <div class="menu-grid-landing">
+        <div class="menu-item-landing">
+            <img src="{{ asset('img/landing/1.jpeg') }}" alt="Menu 1">
+            <p>Bakso Jumbo</p>
         </div>
-        <button class="btn-menu-landing">Lihat Semua Menu</button>
-    </section>
+        <div class="menu-item-landing">
+            <img src="{{ asset('img/landing/2.jpg') }}" alt="Menu 2">
+            <p>Mie Ayam Komplit</p>
+        </div>
+        <div class="menu-item-landing">
+            <img src="{{ asset('img/landing/3.jpeg') }}" alt="Menu 3">
+            <p>Bakso Urat</p>
+        </div>
+    </div>
+    
+    <!-- Ganti button dengan link -->
+    <a href="{{ url('/menuu') }}" class="btn-menu-landing">Lihat Semua Menu</a>
+</section>
+
 
     <!-- Layer 6: Promosi Aplikasi Mobile -->
     <section class="promo-app">
@@ -75,7 +78,7 @@
             <h1>Download aplikasinya</h1>
             <h2>Sekarang</h2>
             <p>Mudah order dari mana saja lewat aplikasi mobile UMKM Bakso & Mie Ayam!</p>
-            <button class="btn-download">Unduh Sekarang</button>
+            <a href="https://github.com/HiragiIsMe/golapak-web  " target="_blank" class="btn-download">Unduh Sekarang</a>
         </div>
     </section>
 
