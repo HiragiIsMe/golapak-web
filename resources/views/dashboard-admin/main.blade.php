@@ -183,5 +183,6 @@ document.getElementById('toggle-toko').addEventListener('change', function() {
 @push('scripts')
 <script>
     window.monthlyIncome = @json($monthlyIncome);
+    console.log('Monthly Income Data:', window.monthlyIncome); // Debugging data
 </script>
 @endpush
