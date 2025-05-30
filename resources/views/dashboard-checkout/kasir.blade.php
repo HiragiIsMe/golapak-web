@@ -424,115 +424,115 @@ categoryBtns.forEach(btn => {
         updateActivePanel();
     });
 });
-document.getElementById('checkout-form').addEventListener('submit', async function (e) {
-    e.preventDefault();
-    const pembeli = this.pembeli.value.trim();
-    const orderType = document.getElementById('order_type').value;
-    const menuItems = Object.values(cart).map(item => ({ id: item.id, qty: item.qty }));
+// document.getElementById('checkout-form').addEventListener('submit', async function (e) {
+//     e.preventDefault();
+//     const pembeli = this.pembeli.value.trim();
+//     const orderType = document.getElementById('order_type').value;
+//     const menuItems = Object.values(cart).map(item => ({ id: item.id, qty: item.qty }));
 
-    if (!pembeli) {
-        alert("Nama pembeli harus diisi");
-        return;
-    }
+//     if (!pembeli) {
+//         alert("Nama pembeli harus diisi");
+//         return;
+//     }
 
-    if (menuItems.length === 0) {
-        alert("Keranjang belanja kosong");
-        return;
-    }
+//     if (menuItems.length === 0) {
+//         alert("Keranjang belanja kosong");
+//         return;
+//     }
 
-    try {
-        const response = await fetch('/api/checkout', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-                'Accept': 'application/json'
-            },
-            body: JSON.stringify({ 
-                pembeli, 
-                menu: menuItems,
-                order_type: orderType
-            })
-        });
+//     try {
+//         const response = await fetch('/api/checkout', {
+//             method: 'POST',
+//             headers: {
+//                 'Content-Type': 'application/json',
+//                 'Accept': 'application/json'
+//             },
+//             body: JSON.stringify({ 
+//                 pembeli, 
+//                 menu: menuItems,
+//                 order_type: orderType
+//             })
+//         });
 
-        const data = await response.json();
+//         const data = await response.json();
 
-        if (!response.ok) {
-            throw new Error(data.message || 'Gagal melakukan checkout');
-        }
+//         if (!response.ok) {
+//             throw new Error(data.message || 'Gagal melakukan checkout');
+//         }
 
-        if (data.status === 'success') {
-            try {
-                await printStruk(data.transaction);
-                cart = {};
-                renderCart();
-                updateCardQtyDisplay();
-            } catch (printError) {
-                console.log(printError);
-            }
-        } else {
-            alert(data.message || "Gagal melakukan checkout");
-        }
-    } catch (error) {
-        console.error("Checkout error:", error);
-        alert(error.message || "Terjadi kesalahan saat checkout");
-    }
-});
+//         if (data.status === 'success') {
+//             try {
+//                 await printStruk(data.transaction);
+//                 cart = {};
+//                 renderCart();
+//                 updateCardQtyDisplay();
+//             } catch (printError) {
+//                 console.log(printError);
+//             }
+//         } else {
+//             alert(data.message || "Gagal melakukan checkout");
+//         }
+//     } catch (error) {
+//         console.error("Checkout error:", error);
+//         alert(error.message || "Terjadi kesalahan saat checkout");
+//     }
+// });
 
-async function printStruk(transaction) {
-        try {
-            // Pastikan QZ Tray terinstall dan terhubung
-            if (!qz.websocket.isActive()) {
-                await qz.websocket.connect();
-            }
+// async function printStruk(transaction) {
+//         try {
+//             // Pastikan QZ Tray terinstall dan terhubung
+//             if (!qz.websocket.isActive()) {
+//                 await qz.websocket.connect();
+//             }
 
-            // Dapatkan printer default
-            const printer = await qz.printers.getDefault();
+//             // Dapatkan printer default
+//             const printer = await qz.printers.getDefault();
 
-            // Format struk
-            const config = qz.configs.create(printer, { 
-                scaleContent: false,
-                colorType: 'grayscale'
-            });
+//             // Format struk
+//             const config = qz.configs.create(printer, { 
+//                 scaleContent: false,
+//                 colorType: 'grayscale'
+//             });
 
-            const ESC = '\x1B', GS = '\x1D';
-            let lines = [
-                `${ESC}@`,
-                `${ESC}a1`, // Center align
-                "STRUK PEMBELIAN\n\n",
-                `${ESC}a0`, // Left align
-                "Kode: " + transaction.transaction_code + "\n",
-                "Tanggal: " + new Date(transaction.date).toLocaleString() + "\n",
-                "-----------------------------\n",
-                "Pembeli: " + transaction.nama_pelanggan_offline + "\n",
-                "-----------------------------\n"
-            ];
+//             const ESC = '\x1B', GS = '\x1D';
+//             let lines = [
+//                 `${ESC}@`,
+//                 `${ESC}a1`, // Center align
+//                 "STRUK PEMBELIAN\n\n",
+//                 `${ESC}a0`, // Left align
+//                 "Kode: " + transaction.transaction_code + "\n",
+//                 "Tanggal: " + new Date(transaction.date).toLocaleString() + "\n",
+//                 "-----------------------------\n",
+//                 "Pembeli: " + transaction.nama_pelanggan_offline + "\n",
+//                 "-----------------------------\n"
+//             ];
 
-            // Tambahkan detail item
-            transaction.details.forEach(detail => {
-                lines.push(`${detail.menu.name}\n`);
-                lines.push(`  ${detail.qty} x ${detail.main_cost.toLocaleString()} = ${detail.main_subtotal.toLocaleString()}\n`);
-            });
+//             // Tambahkan detail item
+//             transaction.details.forEach(detail => {
+//                 lines.push(`${detail.menu.name}\n`);
+//                 lines.push(`  ${detail.qty} x ${detail.main_cost.toLocaleString()} = ${detail.main_subtotal.toLocaleString()}\n`);
+//             });
 
-            lines.push(
-                "-----------------------------\n",
-                `${ESC}a2`, // Right align
-                "TOTAL: Rp" + transaction.grand_total.toLocaleString() + "\n\n",
-                `${ESC}a1`, // Center align
-                "Terima kasih telah berbelanja\n\n\n",
-                `${GS}V\x41` // Cut paper
-            );
+//             lines.push(
+//                 "-----------------------------\n",
+//                 `${ESC}a2`, // Right align
+//                 "TOTAL: Rp" + transaction.grand_total.toLocaleString() + "\n\n",
+//                 `${ESC}a1`, // Center align
+//                 "Terima kasih telah berbelanja\n\n\n",
+//                 `${GS}V\x41` // Cut paper
+//             );
 
-            // Cetak
-            await qz.print(config, lines);
+//             // Cetak
+//             await qz.print(config, lines);
             
-        } catch (error) {
-            alert("Gagal mencetak struk. Pastikan QZ Tray sudah terinstall dan berjalan.");
-            // Fallback: tampilkan struk di popup jika print gagal
-            const strukText = lines.join('').replace(/\n/g, '<br>');
-            const win = window.open('', '_blank');
-            win.document.write(`<pre>${strukText}</pre>`);
-        }
-    }
+//         } catch (error) {
+//             alert("Gagal mencetak struk. Pastikan QZ Tray sudah terinstall dan berjalan.");
+//             // Fallback: tampilkan struk di popup jika print gagal
+//             const strukText = lines.join('').replace(/\n/g, '<br>');
+//             const win = window.open('', '_blank');
+//             win.document.write(`<pre>${strukText}</pre>`);
+//         }
+//     }
 
 
 updateActivePanel();

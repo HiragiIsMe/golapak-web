@@ -123,6 +123,17 @@
                 </div>
             </div>
         </div>
+        <div class="card mt-3">
+    <div class="card-header">
+        <h5>Laporan Harian Penjualan</h5>
+    </div>
+    <div class="card-body text-center">
+        <a href="{{ route('laporan.harian') }}" class="btn btn-success w-100">
+            <i class="fa-solid fa-file-excel me-2"></i> Export Excel Hari Ini
+        </a>
+    </div>
+</div>
+
     </section>
 </div>
 
@@ -190,6 +201,6 @@ document.getElementById('toggle-toko').addEventListener('change', function() {
 @push('scripts')
 <script>
     window.monthlyIncome = @json($monthlyIncome);
-    console.log('Monthly Income Data:', window.monthlyIncome); // Debugging data
+    console.log('Monthly Income Data:', window.monthlyIncome); 
 </script>
 @endpush
