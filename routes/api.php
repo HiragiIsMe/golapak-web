@@ -5,6 +5,7 @@ use App\Http\Controllers\Api\CourierController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\TransactionController;
 use App\Http\Controllers\Api\UserController;
+use App\Http\Controllers\Web\KasirController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -73,3 +74,5 @@ Route::group(['middleware' => ['auth:sanctum', 'auth.courier']], function(){
 
     Route::patch('/shipping-done', [CourierController::class, 'shippingDone']);
 });
+
+Route::post('/checkout', [KasirController::class, 'checkout']);

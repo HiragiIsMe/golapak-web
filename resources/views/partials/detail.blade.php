@@ -4,16 +4,21 @@
     </div>
     <div><strong>Kode Transaksi:</strong> {{ $transaksi->transaction_code }}</div>
     <div><strong>Jenis Pesanan:</strong> 
-        @if($transaksi->order_type == 'deliver')
-            Delivery
-        @elseif($transaksi->order_type == 'take_Away')
-            Take Away
-        @else
-            Dine In
-        @endif
-    </div>
+        Delivery
     <div><strong>Nama Pembeli:</strong> 
         {{ $transaksi->nama_pembeli ?? $transaksi->nama_pelanggan_offline }}
+    </div>
+    <div>
+        <div><strong>Metode Pembayaran :</strong>
+        {{ $transaksi->metode_bayar }}</div>
+    </div>
+    <div>
+        <div><strong>Nomor Rekening :</strong>
+        @if ($transaksi->metode_bayar == 'cod')
+            -
+        @else
+            {{ $transaksi->rekening }}
+        @endif</div>
     </div>
 </div>
 
@@ -42,7 +47,7 @@
         </tbody>
     </table>
 </div>
-
+    
 <!-- Alamat Pembeli -->
 <div class="mb-4">
     <strong>Alamat Pembeli :</strong>

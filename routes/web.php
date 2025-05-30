@@ -53,7 +53,7 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/kasir', [KasirController::class, 'index']);
 
-    Route::post('/checkout', [KasirController::class, 'checkout']);
+    // Route::post('/checkout', [KasirController::class, 'checkout']);
 
     Route::get('/stock', [StokController::class, 'index']);
 

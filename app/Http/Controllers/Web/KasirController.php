@@ -88,14 +88,23 @@ class KasirController extends Controller
             }
 
             $transaction->load('details.menu');
-            PrinterHelper::printTransaction($transaction);
+            // PrinterHelper::printTransaction($transaction);
            
 
-            return redirect()->back();
+            DB::commit();
+
+            return response()->json([
+                'status' => 'success',
+                'message' => 'Transaksi berhasil',
+                'transaction' => $transaction
+            ]);
 
         } catch (\Exception $e) {
             DB::rollBack();
-            dd($e);
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Terjadi kesalahan: ' . $e->getMessage()
+            ], 500);
         }
     }
 
