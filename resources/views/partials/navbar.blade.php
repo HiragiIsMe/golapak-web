@@ -1,6 +1,6 @@
 <nav class="navbar">
     <div class="navbar-left">
-        <img src="{{ asset('img/logo/logo.png') }}" alt="Logo" class="logo">
+        <img src="{{ asset('img/logo/logo3.png') }}" alt="Logo" class="logo">
     </div>
 
     <div class="navbar-toggle" id="navbar-toggle">
@@ -12,7 +12,7 @@
     <div class="navbar-center" id="navbar-menu">
         <a href="{{ route('landing') }}" class="nav-link">Beranda</a>
         <a href="{{ route('tentangkami') }}" class="nav-link">Tentang Kami</a>
-        <a href="{{ route('menuu') }}" class="nav-link">Menu</a>
+        <a href="{{ route('menu') }}" class="nav-link">Menu</a>
         <a href="{{ route('kontak') }}" class="nav-link">Kontak</a>
     </div>
 

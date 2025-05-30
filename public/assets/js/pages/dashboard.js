@@ -1,4 +1,5 @@
-    const monthlyIncome = window.monthlyIncome || [];
+    const monthlyIncome = window.monthlyIncome || {};
+
     var optionsProfileVisit = {
         annotations: {
             position: 'back'
@@ -22,6 +23,14 @@
         xaxis: {
             categories: ["Jan","Feb","Mar","Apr","May","Jun","Jul", "Aug","Sep","Oct","Nov","Dec"],
         },
+        tooltip: {
+        y: {
+            formatter: function(val) {
+                return 'Rp ' + val.toLocaleString('id-ID');
+            }
+        }
+        },
+
     };
 
     let optionsVisitorsProfile = {

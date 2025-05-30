@@ -38,21 +38,47 @@ body, html {
     justify-content: center;
     gap: 20px;
     margin-top: 20px;
+    flex-wrap: wrap; /* agar tetap responsif di layar kecil */
+}
+
+.menu-item-landing {
+    width: 200px; /* Ukuran seragam */
+    text-align: center;
 }
 
 .menu-item-landing img {
+    width: 100%;
     height: 150px;
+    object-fit: cover;
     border-radius: 10px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
+}
+
+.menu-item-landing p {
+    margin-top: 10px;
+    font-weight: bold;
+    color: #fff;
 }
 
 .btn-menu-landing {
-    margin-top: 20px;
-    padding: 10px 20px;
+    display: inline-block;
+    margin-top: 30px;
+    padding: 12px 25px;
     background: #FF7622;
     color: white;
     border: none;
-    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 15px;
+    font-size: 1rem;
+    text-decoration: none;
+    transition: background 0.3s;
 }
+
+.btn-menu-landing:hover {
+    background: #e65c00;
+}
+
 
 /* batas */
 
@@ -64,13 +90,14 @@ body, html {
     align-items: center;
     justify-content: center;
     gap: 40px;
+    flex-wrap: wrap; /* agar responsif di layar kecil */
 }
 
 .promo-app img {
     max-width: 300px;
     width: 100%;
     height: auto;
-    border-radius: 10px;
+    border-radius: 15px;
 }
 
 .promo-text {
@@ -79,15 +106,16 @@ body, html {
 }
 
 .promo-text h1 {
-    font-size: 2rem;
-    margin-bottom: -30px;
+    font-size: 2.2rem;
+    margin-bottom: 5px; /* ganti dari -30px */
+    font-weight: 700;
 }
 
 .promo-text h2 {
     font-size: 2rem;
-    font-style: bold;
-    margin-bottom: 10px;
+    margin-bottom: 15px;
     color: #FF7622;
+    font-weight: 700;
 }
 
 .promo-text p {
@@ -96,11 +124,13 @@ body, html {
 }
 
 .btn-download {
+    display: inline-block;
     padding: 10px 20px;
     background: #FF7622;
     color: #ffffff;
-    border: none;
-    border-radius: 5px;
+    text-decoration: none; /* hilangkan garis bawah */
+    font-weight: bold;
+    border-radius: 15px;
     cursor: pointer;
     transition: background 0.3s;
 }
@@ -108,6 +138,7 @@ body, html {
 .btn-download:hover {
     background: #e65c00;
 }
+
 
 
 /*  slider  */
@@ -240,7 +271,7 @@ body, html {
     }
 
     .carousel-slide {
-        flex: 0 0 100%; /* hanya 1 slide di layar kecil */
+        flex: 0 0 95%; /* hanya 1 slide di layar kecil */
     }
 
     .carousel-btn.prev,

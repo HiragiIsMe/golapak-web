@@ -308,6 +308,7 @@ function renderCart() {
     `;
 }
 document.getElementById('checkout-form').addEventListener('submit', function (e) {
+
     const form = this;
 
     form.querySelectorAll('.cart-item').forEach(el => el.remove());
