@@ -39,6 +39,8 @@ Route::group(['middleware' => 'auth'], function() {
 
     Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
 
+    Route::get('/export-laporan-harian', [DashboardController::class, 'exportLaporanHarian'])->name('laporan.harian');
+
     Route::get('/pesanan', [PesananController::class, 'index']);
 
     Route::get('/pesanan/{id}', [PesananController::class, 'getDetail']);
