@@ -4,11 +4,18 @@
 
 @section('content')
 <div class="d-flex justify-content-end align-items-center mb-3">
-    <label class="form-switch me-2">
-        <input type="checkbox" id="toggle-toko" checked>
-        <i></i>
-    </label>
-    <span id="status-toko" class="fw-bold">Toko Online Aktif</span>
+    <form action="/set-buka-tutup" method="POST">
+        @csrf
+        <label class="form-switch me-2">
+            <input type="checkbox" id="toggle-toko" name="is_open" value="1" onchange="this.form.submit()" {{ $bukaTutup->is_open ? 'checked' : '' }}>
+            <i></i>
+        </label>
+    </form>
+
+    <span id="status-toko" class="fw-bold">
+        {{ $bukaTutup->is_open ? 'Toko Online Aktif' : 'Toko Sedang Tutup' }}
+    </span>
+
 </div> 
 
 <div class="page-heading">

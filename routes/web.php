@@ -37,6 +37,8 @@ Route::post('/login', [WebAuthController::class, 'authenticate'])->name('login')
 
 Route::group(['middleware' => 'auth'], function() {
 
+    Route::post('/set-buka-tutup', [DashboardController::class, 'bukaTutup']);
+
     Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
 
     Route::get('/pesanan', [PesananController::class, 'index']);
