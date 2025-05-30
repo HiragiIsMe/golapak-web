@@ -6,6 +6,7 @@ namespace Database\Seeders;
 
 use App\Models\Address;
 use App\Models\Admin;
+use App\Models\BukaTutup;
 use App\Models\Courier;
 use App\Models\Menu;
 use App\Models\ShippingCost;
@@ -31,6 +32,10 @@ class DatabaseSeeder extends Seeder
             'password' => bcrypt('akuadalahkurir'),
             'phone_number' => '08912332112',
             'total_balance' => 0
+        ]);
+
+        BukaTutup::create([
+            'is_open' => false
         ]);
 
         $menus = [

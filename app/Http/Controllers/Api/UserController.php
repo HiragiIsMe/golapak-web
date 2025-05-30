@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\User\AddressRequest;
 use App\Http\Requests\User\UpdateAddressRequest;
 use App\Models\Address;
+use App\Models\BukaTutup;
 use Illuminate\Support\Facades\Auth;
 
 class UserController extends Controller
@@ -91,5 +92,16 @@ class UserController extends Controller
             'status' => 'success',
             'message' => 'Alamat Berhasil Dihaous'
         ], 200);
+    }
+
+    public function status()
+    {
+        $bukaTutup = BukaTutup::first();
+        $isOpen = $bukaTutup ? $bukaTutup->is_open : false;
+
+        return response()->json([
+            'is_open' => $isOpen,
+            'status' => $isOpen ? 'Toko buka' : 'Toko tutup'
+        ]);
     }
 }

@@ -11,6 +11,7 @@ use Maatwebsite\Excel\Facades\Excel;
 use App\Models\Transaction;
 use App\Models\TransactionDetail;
 use App\Models\Admin;
+use App\Models\BukaTutup;
 use App\Models\Courier;
 use App\Models\User;
 
@@ -37,15 +38,19 @@ class DashboardController extends Controller
             $rawIncome
         ));
 
+        $bukaTutup = BukaTutup::first();
+
 
         return view('dashboard-admin.main', compact(
             'jumlahTransaksi',
             'pesananDiproses',
             'jumlahPegawai',
             'monthlyIncome',
-            'totalPengguna'
+            'totalPengguna',
+            'bukaTutup'
         ));
     }
+
     public function laporanHarian()
 {
     $today = now()->toDateString();
@@ -112,4 +117,21 @@ private function getLaporan(array $types, $date)
         ->groupBy('menus.name')
         ->get();
 }
+
+
+    public function bukaTutup(Request $request)
+    {
+        $isOpen = $request->has('is_open');
+
+        $bukaTutup = BukaTutup::first();
+        if (!$bukaTutup) {
+            $bukaTutup = new BukaTutup();
+        }
+
+        $bukaTutup->is_open = $isOpen;
+        $bukaTutup->save();
+
+        return redirect()->back();
+    }
+
 }
