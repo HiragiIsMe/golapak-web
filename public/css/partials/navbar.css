@@ -5,10 +5,16 @@
     background: #F0F0F0;
     padding: 10px 30px;
     color: white;
+    position: relative;
 }
 
 .navbar-left .logo {
     height: 40px;
+}
+
+.navbar-center {
+    display: flex;
+    align-items: center;
 }
 
 .navbar-center a {
@@ -17,11 +23,11 @@
     color: rgb(0, 0, 0);
     font-weight: bold;
 }
-.navbar-center a.active {
-    border-bottom: 2px solid #FF7622; /* kasih garis bawah oranye */
-    color: #FF7622; /* warna tulisan berubah */
-}
 
+.navbar-center a.active {
+    border-bottom: 2px solid #FF7622;
+    color: #FF7622;
+}
 
 .navbar-right .btn-order {
     background: #FF7622;
@@ -39,3 +45,78 @@
     border-bottom: 2px solid #ff6600;
 }
 
+/* Hamburger icon bars */
+.navbar-toggle {
+    display: none;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 30px;
+    height: 24px;
+    cursor: pointer;
+    z-index: 1001;
+}
+
+.bar {
+    height: 3px;
+    width: 100%;
+    background-color: #000;
+    transition: all 0.4s ease-in-out;
+    border-radius: 2px;
+}
+
+/* Animate to "X" */
+.navbar-toggle.active .bar:nth-child(1) {
+    transform: rotate(45deg) translate(5px, 5px);
+}
+
+.navbar-toggle.active .bar:nth-child(2) {
+    opacity: 0;
+}
+
+.navbar-toggle.active .bar:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Responsive navbar dropdown for mobile */
+@media (max-width: 768px) {
+    .navbar-toggle {
+        display: flex;
+    }
+
+    .navbar-center {
+        position: absolute;
+        top: 60px;
+        left: 0;
+        width: 100%;
+        background-color: #0F182C;
+        flex-direction: column; /* important */
+        align-items: center;
+        justify-content: center;
+        gap: 15px;
+        padding: 20px 0;
+        transform: translateY(-100%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 0.3s ease, opacity 0.3s ease;
+        z-index: 1000;
+    }
+
+    .navbar-center.show {
+        transform: translateY(0);
+        opacity: 1;
+        pointer-events: auto;
+    }
+
+    .navbar-center a {
+        color: white;
+        margin: 10px 0;
+    }
+
+    .desktop-only {
+        display: none;
+    }
+
+    .mobile-only {
+        display: block;
+    }
+}

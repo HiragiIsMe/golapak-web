@@ -5,9 +5,14 @@ use App\Http\Controllers\Web\AuthController as WebAuthController;
 use App\Http\Controllers\Web\KasirController;
 use App\Http\Controllers\Web\MenuController;
 use App\Http\Controllers\Web\PegawaiController;
+use App\Http\Controllers\Web\TransactionController;
 use App\Http\Controllers\Web\PesananController;
 use App\Http\Controllers\Web\StokController;
 use Illuminate\Support\Facades\Route;
+use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
+use App\Http\Controllers\Web\DashboardController;
+
+
 
 /*
 |--------------------------------------------------------------------------
@@ -46,9 +51,11 @@ Route::post('/login', [WebAuthController::class, 'authenticate'])->name('login')
 
 Route::group(['middleware' => 'auth'], function() {
 
-    Route::get('/dashboard-admin', function () {
-        return view('dashboard-admin.main');
-    })->name('dashboard-admin');
+    // Route::get('/dashboard-admin', function () {
+    //     return view('dashboard-admin.main');
+    // })->name('dashboard-admin');
+
+Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('dashboard-admin');
 
     Route::get('/pesanan', [PesananController::class, 'index']);
 
@@ -84,9 +91,16 @@ Route::put('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'update']
 Route::delete('/dashboard-admin/pegawai/{id}', [PegawaiController::class, 'destroy'])->name('dashboard-admin.pegawai.destroy');
 
 
-Route::get('/dashboard-admin/riwayat-transaksi', function () {
-    return view('dashboard-admin.riwayat');
-})->name('dashboard-riwayat');
+
+
+Route::get('/dashboard-admin/riwayat-transaksi', [TransactionController::class, 'index'])->name('dashboard-riwayat');
+// Route::get('/dashboard-admin/riwayat-transaksi/{id}', [TransactionController::class, 'show'])->name('dashboard-riwayat.show');
+// Route::get('/dashboard-admin/riwayat-transaksi/{id}', [TransactionController::class, 'show']);
+Route::get('/dashboard-admin/riwayat-transaksi/detail/{id}', [TransactionController::class, 'getDetail']);
+
+
+
+
 
 
 // Route::get('/dashboard-admin/pesanan', [PesananController::class, 'index'])->name('dashboard-pesanan');
