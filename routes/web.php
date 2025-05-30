@@ -71,7 +71,7 @@ Route::get('/dashboard-admin', [DashboardController::class, 'index'])->name('das
 
     Route::get('/kasir', [KasirController::class, 'index']);
 
-    Route::post('/checkout', [KasirController::class, 'checkout']);
+    // Route::post('/checkout', [KasirController::class, 'checkout']);
 
     Route::get('/stock', [StokController::class, 'index']);
 

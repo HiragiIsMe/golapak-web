@@ -7,104 +7,101 @@
     <div class="row">
         <div class="col-md-8">
             <div class="d-flex mb-3 align-items-center gap-2">
-            <input type="text" id="menuSearch" class="form-control w-50" placeholder="Cari menu...">
-            <button class="btn category-btn active" data-category="makanan">Makanan</button>
-            <button class="btn category-btn" data-category="minuman">Minuman</button>
-        </div>
-   <div class="menu-slider-wrapper mb-3">
-    <div class="menu-slider" id="menuSlider">
-        <div class="menu-panel">
-            <div class="row g-3">
-                @foreach ($makanan as $data)
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+                <input type="text" id="menuSearch" class="form-control w-50" placeholder="Cari menu...">
+                <button class="btn category-btn active" data-category="makanan">Makanan</button>
+                <button class="btn category-btn" data-category="minuman">Minuman</button>
+            </div>
 
-                            <div class="card-body p-2">
-                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
-                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
-                            <div class="menu-action mt-2">
-                                <button class="btn qty-button btn-warning add-to-cart" 
-                                        data-id="{{ $data['id'] }}"
-                                        data-name="{{ $data['name'] }}" 
-                                        data-price={{ $data['main_cost'] }}>+</button>
+            <div class="menu-slider-wrapper mb-3">
+                <div class="menu-slider" id="menuSlider">
+                    <!-- Makanan Panel -->
+                    <div class="menu-panel">
+                        <div class="row g-3">
+                            @foreach ($makanan as $data)
+                                <div class="col-md-4">
+                                    <div class="card text-center shadow-sm">
+                                        <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+                                        <div class="card-body p-2">
+                                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
+                                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
+                                            <div class="menu-action mt-2">
+                                                <button class="btn qty-button btn-warning add-to-cart" 
+                                                    data-id="{{ $data['id'] }}"
+                                                    data-name="{{ $data['name'] }}" 
+                                                    data-price="{{ $data['main_cost'] }}">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
-                            </div>
+                            @endforeach
                         </div>
                     </div>
-                @endforeach
+
+                    <!-- Minuman Panel -->
+                    <div class="menu-panel">
+                        <div class="row g-3">
+                            @foreach ($minuman as $data)
+                                <div class="col-md-4">
+                                    <div class="card text-center shadow-sm">
+                                        <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
+                                        <div class="card-body p-2">
+                                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
+                                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
+                                            <div class="menu-action mt-2">
+                                                <button class="btn qty-button btn-warning add-to-cart" 
+                                                    data-id="{{ $data['id'] }}"
+                                                    data-name="{{ $data['name'] }}" 
+                                                    data-price="{{ $data['main_cost'] }}">+</button>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endforeach 
+                        </div>
+                    </div>
+                </div>
             </div>
         </div>
 
-        <div class="menu-panel">
-            <div class="row g-3">
-                @foreach ($minuman as $data)
-                    <div class="col-md-4">
-                        <div class="card text-center shadow-sm">
-                            <img src="{{ asset('storage/' . $data['image']) }}" class="card-img-top" alt="menu" style="height:150px; object-fit: cover;">
-
-                            <div class="card-body p-2">
-                            <div class="fw-bold menu-name">{{ $data['name'] }}</div>
-                            <div class="text-muted menu-price">{{ $data['main_cost'] }}</div>
-                            <div class="menu-action mt-2">
-                               <button class="btn qty-button btn-warning add-to-cart" 
-                                        data-id="{{ $data['id'] }}"
-                                        data-name="{{ $data['name'] }}" 
-                                        data-price={{ $data['main_cost'] }}>+</button>
-                                </div>
-                            </div>
-                        </div>
-                    </div>
-                @endforeach 
-            </div>
-        </div>
-    </div>
-</div>
-</div>
-
-
+        <!-- Cart -->
         <div class="col-md-4">
             <div class="bg-white p-4 shadow-sm rounded">
                 <h5 class="fw-bold text-center">Keranjang Pesanan</h5>
-                <form id="checkout-form" method="POST" action="/checkout">
-                
-                @csrf
-                 <input type="hidden" name="order_type" id="order_type">
-
-                <div class="order-type-toggle mx-auto mb-4">
-                    <div class="toggle-wrapper">
-                        <div id="toggleIndicator" class="toggle-indicator"></div>
-                        <button type="button" class="toggle-btn" id="btnDineIn" onclick="setOrderType('dine-in')">Dine In</button> 
-                        <button type="button" class="toggle-btn" id="btnTakeAway" onclick="setOrderType('take-away')">Take Away</button>
+                <form id="checkout-form">
+                    @csrf
+                    <input type="hidden" name="order_type" id="order_type">
+                    <div class="order-type-toggle mx-auto mb-4">
+                        <div class="toggle-wrapper">
+                            <div id="toggleIndicator" class="toggle-indicator"></div>
+                            <button type="button" class="toggle-btn" id="btnDineIn" onclick="setOrderType('dine-in')">Dine In</button> 
+                            <button type="button" class="toggle-btn" id="btnTakeAway" onclick="setOrderType('take-away')">Take Away</button>
+                        </div>
                     </div>
-                </div>
-                
-                <div class="mb-3">
-                    <strong>Nama Pembeli:</strong>
-                    <input type="text" class="form-control mt-1" placeholder="Nama Pembeli" name="pembeli" required>
-                </div>
 
-                <div class="table-responsive mb-3">
-                    <table class="table table-bordered text-center">
-                        <thead class="table-light">
-                            <tr>
-                                <th>Nama</th>
-                                <th>Qty</th>
-                                <th>Harga</th>
-                            </tr>
-                        </thead>
-                        <tbody id="cart-items">
-                            @for ($i = 0; $i < 7; $i++)
+                    <div class="mb-3">
+                        <strong>Nama Pembeli:</strong>
+                        <input type="text" class="form-control mt-1" placeholder="Nama Pembeli" name="pembeli" required>
+                    </div>
+
+                    <div class="table-responsive mb-3">
+                        <table class="table table-bordered text-center">
+                            <thead class="table-light">
                                 <tr>
+                                    <th>Nama</th>
+                                    <th>Qty</th>
+                                    <th>Harga</th>
                                 </tr>
-                            @endfor
-                        </tbody>
-                    </table>
-                </div>
+                            </thead>
+                            <tbody id="cart-items">
+                                <!-- Render dari JS -->
+                            </tbody>
+                        </table>
+                    </div>
 
-                <div class="text-end mb-3">
-                    <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">0</span></div>
-                </div>
+                    <div class="text-end mb-3">
+                        <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">0</span></div>
+                    </div>
+
                     <div class="d-grid">
                         <button class="btn btn-warning text-white">Cetak Struk</button>
                     </div>
@@ -114,6 +111,7 @@
     </div>
 </div>
 
+<!-- Styles & Scripts -->
 <style>
     .menu-action {
     display: flex;
@@ -233,6 +231,9 @@
 
 </style>
 
+<script src="https://cdn.jsdelivr.net/npm/rsvp@4.8.5/dist/rsvp.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/qz-tray@2.1.1/qz-tray.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/jssha@3.2.0/src/sha256.js"></script>
 <script>
     document.getElementById("btnDineIn").addEventListener("click", function () {
         this.classList.add("active");
@@ -307,30 +308,6 @@ function renderCart() {
         <div class="fs-5 fw-bold mt-2">TOTAL: <span class="text-dark">${(subtotal).toLocaleString()}</span></div>
     `;
 }
-document.getElementById('checkout-form').addEventListener('submit', function (e) {
-    const form = this;
-
-    form.querySelectorAll('.cart-item').forEach(el => el.remove());
-
-    let index = 0;
-    Object.entries(cart).forEach(([name, item]) => {
-        const inputId = document.createElement('input');
-        inputId.type = 'hidden';
-        inputId.name = `menu[${index}][id]`;
-        inputId.value = item.id;
-        inputId.classList.add('cart-item');
-        form.appendChild(inputId);
-
-        const inputQty = document.createElement('input');
-        inputQty.type = 'hidden';
-        inputQty.name = `menu[${index}][qty]`;
-        inputQty.value = item.qty;
-        inputQty.classList.add('cart-item');
-        form.appendChild(inputQty);
-
-        index++;
-    });
-});
 
 document.addEventListener('click', function(e) {
     if (e.target.classList.contains('add-to-cart')) {
@@ -446,10 +423,117 @@ categoryBtns.forEach(btn => {
         updateActivePanel();
     });
 });
+document.getElementById('checkout-form').addEventListener('submit', async function (e) {
+    e.preventDefault();
+    const pembeli = this.pembeli.value.trim();
+    const orderType = document.getElementById('order_type').value;
+    const menuItems = Object.values(cart).map(item => ({ id: item.id, qty: item.qty }));
+
+    if (!pembeli) {
+        alert("Nama pembeli harus diisi");
+        return;
+    }
+
+    if (menuItems.length === 0) {
+        alert("Keranjang belanja kosong");
+        return;
+    }
+
+    try {
+        const response = await fetch('/api/checkout', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+                'Accept': 'application/json'
+            },
+            body: JSON.stringify({ 
+                pembeli, 
+                menu: menuItems,
+                order_type: orderType
+            })
+        });
+
+        const data = await response.json();
+
+        if (!response.ok) {
+            throw new Error(data.message || 'Gagal melakukan checkout');
+        }
+
+        if (data.status === 'success') {
+            try {
+                await printStruk(data.transaction);
+                cart = {};
+                renderCart();
+                updateCardQtyDisplay();
+            } catch (printError) {
+                console.log(printError);
+            }
+        } else {
+            alert(data.message || "Gagal melakukan checkout");
+        }
+    } catch (error) {
+        console.error("Checkout error:", error);
+        alert(error.message || "Terjadi kesalahan saat checkout");
+    }
+});
+
+async function printStruk(transaction) {
+        try {
+            // Pastikan QZ Tray terinstall dan terhubung
+            if (!qz.websocket.isActive()) {
+                await qz.websocket.connect();
+            }
+
+            // Dapatkan printer default
+            const printer = await qz.printers.getDefault();
+
+            // Format struk
+            const config = qz.configs.create(printer, { 
+                scaleContent: false,
+                colorType: 'grayscale'
+            });
+
+            const ESC = '\x1B', GS = '\x1D';
+            let lines = [
+                `${ESC}@`,
+                `${ESC}a1`, // Center align
+                "STRUK PEMBELIAN\n\n",
+                `${ESC}a0`, // Left align
+                "Kode: " + transaction.transaction_code + "\n",
+                "Tanggal: " + new Date(transaction.date).toLocaleString() + "\n",
+                "-----------------------------\n",
+                "Pembeli: " + transaction.nama_pelanggan_offline + "\n",
+                "-----------------------------\n"
+            ];
+
+            // Tambahkan detail item
+            transaction.details.forEach(detail => {
+                lines.push(`${detail.menu.name}\n`);
+                lines.push(`  ${detail.qty} x ${detail.main_cost.toLocaleString()} = ${detail.main_subtotal.toLocaleString()}\n`);
+            });
+
+            lines.push(
+                "-----------------------------\n",
+                `${ESC}a2`, // Right align
+                "TOTAL: Rp" + transaction.grand_total.toLocaleString() + "\n\n",
+                `${ESC}a1`, // Center align
+                "Terima kasih telah berbelanja\n\n\n",
+                `${GS}V\x41` // Cut paper
+            );
+
+            // Cetak
+            await qz.print(config, lines);
+            
+        } catch (error) {
+            alert("Gagal mencetak struk. Pastikan QZ Tray sudah terinstall dan berjalan.");
+            // Fallback: tampilkan struk di popup jika print gagal
+            const strukText = lines.join('').replace(/\n/g, '<br>');
+            const win = window.open('', '_blank');
+            win.document.write(`<pre>${strukText}</pre>`);
+        }
+    }
 
 
 updateActivePanel();
-
 </script>
 @endsection
-
