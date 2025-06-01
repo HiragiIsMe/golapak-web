@@ -15,7 +15,7 @@
 
     <!-- Layer 3: Marquee -->
     <div class="marquee">
-        <marquee behavior="scroll" direction="left">Promo Spesial Hari Ini! Gratis Es Teh untuk Setiap Pembelian Bakso Jumbo!</marquee>
+        <marquee behavior="scroll" direction="left">Selamat datang di website UMKM Mie Ayam Solo Bodowoso - Nikmati cita rasa mie ayam khas Solo dengan kualitas terbaik!</marquee>
     </div>
 
     <!-- Layer 4: Slider Gambar -->
@@ -52,23 +52,19 @@
 <section class="menu-landing" id="menu">
     <h2>Menu Andalan Kami</h2>
     <div class="menu-grid-landing">
-        <div class="menu-item-landing">
-            <img src="{{ asset('img/landing/1.jpeg') }}" alt="Menu 1">
-            <p>Bakso Jumbo</p>
-        </div>
-        <div class="menu-item-landing">
-            <img src="{{ asset('img/landing/2.jpg') }}" alt="Menu 2">
-            <p>Mie Ayam Komplit</p>
-        </div>
-        <div class="menu-item-landing">
-            <img src="{{ asset('img/landing/3.jpeg') }}" alt="Menu 3">
-            <p>Bakso Urat</p>
-        </div>
+        @forelse($bestSellers as $menu)
+            <div class="menu-item-landing">
+                <img src="{{ asset('storage/' . $menu->image) }}" alt="{{ $menu->name }}">
+                <p>{{ $menu->name }}</p>
+            </div>
+        @empty
+            <p>Tidak ada data best seller saat ini.</p>
+        @endforelse
     </div>
-    
-    <!-- Ganti button dengan link -->
+
     <a href="{{ url('/menuu') }}" class="btn-menu-landing">Lihat Semua Menu</a>
 </section>
+
 
 
     <!-- Layer 6: Promosi Aplikasi Mobile -->

@@ -98,7 +98,7 @@
                 <div class="col-12">
                     <div class="card">
                         <div class="card-header">
-                            <h4>Pemasukan</h4>
+                            <h4>Pemasukan Bulanan</h4>
                              {{-- <h6 class="font-extrabold mb-0">Rp {{ number_format($pemasukan, 0, ',', '.') }}</h6> --}}
                         </div>
                         <div class="card-body">
