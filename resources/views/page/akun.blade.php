@@ -37,8 +37,32 @@
 
             </form>
         </div>
+        <a href="{{ route('landing') }}" class="btn-back-to-landing">
+    ← Kembali ke Beranda
+        </a>
+
     </div>
 </section>
+<style>
+.btn-back-to-landing {
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background-color: #09142d;
+    color: rgb(253, 252, 252);
+    padding: 8px 14px;
+    border-radius: 15px;
+    text-decoration: none;
+    font-weight: bold;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+    transition: background-color 0.3s;
+}
+.btn-back-to-landing:hover {
+    /* background-color: #d04f1f; */
+    color: orangered
+}
+</style>
+
 @endsection
 
 @push('scripts')

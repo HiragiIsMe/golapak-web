@@ -6,12 +6,13 @@
         <div class="container mt-4">
             <div class="d-flex justify-content-between align-items-center mb-3">
                 <h4>TRANSAKSI</h4>
-                <form method="GET" action="{{ route('dashboard-riwayat') }}" class="d-flex align-items-center">
-                    <label for="tanggal" class="me-2">Tanggal Filter</label>
-                    <input type="date" id="tanggal" name="tanggal" class="form-control me-2" style="width: 200px;"
-                        value="{{ request('tanggal') }}">
-                    <button type="submit" class="btn btn-warning">Filter</button>
-                </form>
+            <form method="GET" action="{{ route('dashboard-riwayat') }}" class="d-flex align-items-center">
+                <label for="tanggal" class="me-2">Tanggal</label>
+                <input type="text" id="tanggal" name="tanggal" class="form-control me-2" style="width: 250px;"
+                    value="{{ request('tanggal') }}">
+                <button type="submit" class="btn btn-warning">Filter</button>
+            </form>
+
             </div>
 
             <div class="table-responsive mb-3">
@@ -111,4 +112,34 @@
                 });
             });
         </script>
+        
     @endsection
+@push('scripts')
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.css" />
+<script src="https://cdn.jsdelivr.net/npm/moment@2.29.4/moment.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/daterangepicker/daterangepicker.min.js"></script>
+
+<script>
+    $(function() {
+        $('#tanggal').daterangepicker({
+            autoUpdateInput: false,
+            locale: {
+                cancelLabel: 'Clear',
+                format: 'YYYY-MM-DD'
+            }
+        });
+
+        $('#tanggal').on('apply.daterangepicker', function(ev, picker) {
+            if (picker.startDate.format('YYYY-MM-DD') === picker.endDate.format('YYYY-MM-DD')) {
+                $(this).val(picker.startDate.format('YYYY-MM-DD')); // satu tanggal
+            } else {
+                $(this).val(picker.startDate.format('YYYY-MM-DD') + ' - ' + picker.endDate.format('YYYY-MM-DD'));
+            }
+        });
+
+        $('#tanggal').on('cancel.daterangepicker', function(ev, picker) {
+            $(this).val('');
+        });
+    });
+</script>
+@endpush

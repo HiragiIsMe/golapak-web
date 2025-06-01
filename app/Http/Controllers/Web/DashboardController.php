@@ -32,7 +32,6 @@ class DashboardController extends Controller
             ->pluck('total', 'month')
             ->toArray();
 
-        // Pastikan semua nilai dikonversi ke integer (hilangkan string)
         $monthlyIncome = array_map('intval', array_replace(
             array_fill(1, 12, 0),
             $rawIncome

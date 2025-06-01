@@ -19,10 +19,12 @@
             <div class="mb-3">
                 <label for="nama" class="form-label">Gambar</label>
                 <input type="file" class="form-control rounded-pill" id="image" name="image" placeholder="Masukkan nama menu">
+                <small class="text-muted">Format image jpg,jpeg dan png.</small>
             </div>
             @error('image')
                 <div class="text-danger" style="color: red;">{{ $message }}</div>
             @enderror
+            
 
             <div class="mb-3">
                 <label for="harga" class="form-label">Harga Jual</label>

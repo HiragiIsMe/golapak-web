@@ -9,13 +9,12 @@ use App\Http\Controllers\Web\TransactionController;
 use App\Http\Controllers\Web\PesananController;
 use App\Http\Controllers\Web\StokController;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\Web\LandingController;
 use SebastianBergmann\CodeCoverage\Report\Html\Dashboard;
 use App\Http\Controllers\Web\DashboardController;
 
 // Route page
-Route::get('/', function () {
-    return view('page.landing');
-})->name('landing');
+Route::get('/', [LandingController::class, 'index'])->name('landing');
 
 Route::get('/tentangkami', function () {
     return view('page.tentangkami');
@@ -86,6 +85,21 @@ Route::group(['middleware' => 'auth'], function() {
 });
 
 
+Route::get('/get-menu', function () {
+    $menus = \App\Models\Menu::select('name', 'image', 'main_cost', 'tipe')->get();
+
+    $grouped = $menus->groupBy('tipe')->map(function ($items) {
+        return $items->map(function ($item) {
+            return [
+                'img' => asset('storage/' . $item->image),
+                'name' => $item->name,
+                'desc' => 'Harga: Rp ' . number_format($item->main_cost), // kamu bisa custom deskripsi
+            ];
+        });
+    });
+
+    return response()->json($grouped);
+});
 
 
 

@@ -9,8 +9,6 @@
     <div class="menu-categories">
         <button class="menu-btn active" data-category="makanan">Makanan</button>
         <button class="menu-btn" data-category="minuman">Minuman</button>
-        {{-- <button class="menu-btn" data-category="camilan">Camilan</button>
-        <button class="menu-btn" data-category="tambahan">Tambahan</button> --}}
     </div>
 
         <!-- Grid Container -->
