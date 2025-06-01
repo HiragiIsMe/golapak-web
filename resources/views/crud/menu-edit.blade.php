@@ -41,7 +41,12 @@
                 <label for="image" class="form-label">Gambar</label>
                 @if($menu->image)
                     <div class="mb-2">
-                        <img src="{{ asset('storage/' . $menu->image) }}" alt="Gambar Menu" style="max-width: 200px;">
+                        @if($menu->image && file_exists(public_path('storage/' . $menu->image)))
+                            <img src="{{ asset('storage/' . $menu->image) }}" alt="Gambar Menu" style="max-width: 200px;">
+                        @else
+                            <p>Gambar tidak ditemukan</p>
+                        @endif
+
                     </div>
                 @endif
                 <input type="file" class="form-control rounded-pill" id="image" name="image">

@@ -31,6 +31,8 @@ Route::post('/login-kurir', [AuthController::class, 'LoginKurir']);
 
 Route::group(['middleware' => ['auth:sanctum', 'auth.user']], function(){
 
+    Route::get('/status-toko', [UserController::class, 'status']);
+
     Route::get('/user', [UserController::class, 'getUser']);
 
     Route::post('/add-address', [UserController::class, 'addAdress']);

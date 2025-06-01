@@ -11,27 +11,33 @@ use Illuminate\Support\Facades\Log;
 class TransactionController extends Controller
 {
 
-    public function index()
+    public function index(Request $request)
     {
-        $transactions = Transaction::with(['user', 'details.menu'])
-            ->orderBy('created_at', 'desc')
-            ->get();
+        $query = Transaction::with(['user', 'details.menu'])
+            ->whereIn('status', ['done', 'canceled'])
+            ->orderBy('created_at', 'desc');
+
+        if ($request->has('tanggal') && $request->tanggal) {
+            $query->whereDate('date', $request->tanggal);
+        }
+
+        $transactions = $query->get();
 
         return view('dashboard-admin.riwayat', compact('transactions'));
     }
 
-   public function getDetail($id)
-{
-    try {
-        $details = TransactionDetail::with('menu')
-            ->where('transaction_id', $id)
-            ->get();
 
-        return view('partials.tabel_detail', compact('details'));
-    } catch (\Exception $e) {
-        Log::error('GAGAL AMBIL DETAIL TRANSAKSI: ' . $e->getMessage());
-        return response()->json(['error' => 'Gagal mengambil detail'], 500);
+    public function getDetail($id)
+    {
+        try {
+            $details = TransactionDetail::with('menu')
+                ->where('transaction_id', $id)
+                ->get();
+
+            return view('partials.tabel_detail', compact('details'));
+        } catch (\Exception $e) {
+            Log::error('GAGAL AMBIL DETAIL TRANSAKSI: ' . $e->getMessage());
+            return response()->json(['error' => 'Gagal mengambil detail'], 500);
+        }
     }
-}
-
 }

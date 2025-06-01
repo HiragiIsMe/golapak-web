@@ -126,6 +126,9 @@ class CourierController extends Controller
     {
         $data = Transaction::where('transaction_code', '=', $request->transaction_code)->select('id')->first();
 
+        $data->status = 'done';
+        $data->save();
+        
         OrderDelivery::where('transaction_id', '=', $data->id)->update([
             'arrival_date' => now(),
             'status' => 'arrived'
