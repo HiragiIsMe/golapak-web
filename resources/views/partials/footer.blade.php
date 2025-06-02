@@ -4,8 +4,8 @@
         <img src="{{ asset('img/logo/logo.png') }}" alt="Logo" class="footer-logo">
         <div class="footer-info">
             <h3>Mie Ayam Solo Bondowoso</h3>
-            <p>Robylopefela@gmail.com</p>
-            <p>+628815072904</p>
+            <p>mieayamsolobondowoso@gmail.com</p>
+            <p>+6282228753198</p>
         </div>
     </div>
 

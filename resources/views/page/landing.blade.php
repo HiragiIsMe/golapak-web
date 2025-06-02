@@ -50,7 +50,7 @@
 
 <!-- Layer 5: Konten Menu -->
 <section class="menu-landing" id="menu">
-    <h2>Menu Andalan Kami</h2>
+    <h2>Menu Best Seller Kami</h2>
     <div class="menu-grid-landing">
         @forelse($bestSellers as $menu)
             <div class="menu-item-landing">
@@ -74,14 +74,10 @@
             <h1>Download aplikasinya</h1>
             <h2>Sekarang</h2>
             <p>Mudah order dari mana saja lewat aplikasi mobile UMKM Bakso & Mie Ayam!</p>
-            <a href="https://github.com/HiragiIsMe/golapak-web  " target="_blank" class="btn-download">Unduh Sekarang</a>
+            <a href="https://github.com/zaen-dotcom/golapak2" target="_blank" class="btn-download">Unduh Sekarang</a>
         </div>
     </section>
 
-        <!-- Floating Order Button -->
-    <a href="#" class="floating-order-btn" title="Pesan Sekarang">
-        <img src="{{ asset('img/landing/bakso-fl.png') }}" alt="Order Button">
-    </a>
-
+ 
  
 @endsection
