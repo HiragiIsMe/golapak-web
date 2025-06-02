@@ -20,11 +20,11 @@
         <div class="contact-info">
             <div class="info-item">
                 <i class="fa-brands fa-whatsapp info-icon"></i>
-                <p>+628815072904</p>
+                <p>+6282228753198</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-envelope info-icon"></i>
-                <p>RobyPunyafela@gmail.com</p>
+                <p>mieayamsolobondowoso@gmail.com</p>
             </div>
             <div class="info-item">
                 <i class="fas fa-map-marker-alt info-icon"></i>
